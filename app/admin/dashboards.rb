@@ -1,12 +1,12 @@
 #encoding: utf-8
 ActiveAdmin::Dashboards.build do
 
-  section "Relatorios" do
+  section "Reports" do
     ul do
-      li link_to 'Usuários que mais apoiaram', most_backed_report_path
-      li link_to 'Todos os apoios confirmados', all_confirmed_backers_report_path
-      li link_to 'Todos os realizadores', all_projects_owner_report_path
-      li link_to 'Todos os emails', all_emails_to_newsletter_path
+      li link_to 'Most Backed Report', most_backed_report_path
+      li link_to 'All Confirmed Backers Report', all_confirmed_backers_report_path
+      li link_to 'All Project Owners Report', all_projects_owner_report_path
+      li link_to 'All Emails Subscribing to Newsletter Report', all_emails_to_newsletter_path
     end
   end
 
@@ -16,14 +16,13 @@ ActiveAdmin::Dashboards.build do
 
   # == Simple Dashboard Section
   # Here is an example of a simple dashboard section
-  #
-  #   section "Recent Posts" do
-  #     ul do
-  #       Post.recent(5).collect do |post|
-  #         li link_to(post.title, admin_post_path(post))
-  #       end
-  #     end
-  #   end
+  section "Recent Posts" do
+     ul do
+       Post.recent(5).collect do |post|
+         li link_to(post.title, admin_post_path(post))
+       end
+     end
+   end
 
   # == Render Partial Section
   # The block is rendered within the context of the view, so you can

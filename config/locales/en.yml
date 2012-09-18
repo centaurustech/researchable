@@ -73,6 +73,9 @@ en:
           attributes:
             email:
               not_found: "Your email is not registered, please verify the address or create a new account"
+  active_admin:
+    dashboard: "Dashboard"
+    logout: "Logout"
     attributes:
       backer:
         value: Value
