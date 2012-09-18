@@ -1,8 +1,8 @@
-pt:
+en:
   active_admin:
     dashboard: "Administrative Panel"
     dashboard_welcome:
-      welcome: "Welcome to Active Admin. This page is the default panel."
+      welcome: "Welcome to Researchable's Administrative Area"
       call_to_action: "To add sections to the panel, check 'app/admin/dashboards.rb'"
     view: View
     edit: Edit
@@ -18,7 +18,7 @@ pt:
     empty: Empty
     previous: Previous
     next: Next
-    download: "Dwnload:"
+    download: "Download:"
     has_many_new: "Has Many New %{model}"
     has_many_delete: Delete
     filter: Filter
@@ -39,7 +39,7 @@ pt:
       entry:
         one: record
         other: records
-    any: Qualquer
+    any: Any
     blank_slate:
       content: "No %{resource_name} yet."
       link: "Create a"
