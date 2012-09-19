@@ -44,7 +44,7 @@ class ProjectsController < ApplicationController
 
         calendar = Calendar.new
         @events = Rails.cache.fetch 'calendar', expires_in: 30.minutes do
-          calendar.fetch_events_from("catarse.me_237l973l57ir0v6279rhrr1qs0@group.calendar.google.com") || []
+          calendar.fetch_events_from("http://www.google.com/calendar/embed?src=admin%40researchable.co&ctz=America/New_York ") || []
         end
         @curated_pages = CuratedPage.visible.order("created_at desc").limit(8)
         @last_tweets = Rails.cache.fetch('last_tweets', :expires_in => 30.minutes) do
@@ -215,7 +215,7 @@ class ProjectsController < ApplicationController
   def bitly
     return unless Rails.env.production?
     require 'net/http'
-    res = Net::HTTP.start("api.bit.ly", 80) { |http| http.get("/v3/shorten?login=diogob&apiKey=R_76ee3ab860d76d0d1c1c8e9cc5485ca1&longUrl=#{CGI.escape(project_url(@project))}") }
+    res = Net::HTTP.start("api.bit.ly", 80) { |http| http.get("/v3/shorten?login=researchable&apiKey=R_81adeb6f8e1c61df926b63755ca2df68&longUrl=#{CGI.escape(project_url(@project))}") }
     data = JSON.parse(res.body)['data']
     data['url'] if data
   end

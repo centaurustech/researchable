@@ -69,7 +69,7 @@ html lang="#{I18n.locale}" xmlns:fb="http://ogp.me/ns/fb#"
             .facebook
               .fb-like data-href="http://facebook.com/researchable" data-send="false" data-width="100" data-show-faces="true"
             h3.newsletter= t('footer.titles.newsletter')
-            = form_tag 'http://catarse.us5.list-manage.com/subscribe/post?u=ebfcd0d16dbb0001a0bea3639&amp;id=149c39709e', id: 'mailee-form', method: 'post' do
+            = form_tag 'http://eepurl.com/pE0nv', id: 'mailee-form', method: 'post' do
               = text_field_tag 'EMAIL', nil, placeholder: 'email@email.com', label: 'email'
               = submit_tag 'submit'
           .clearfix
