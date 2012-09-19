@@ -42,10 +42,7 @@ class ProjectsController < ApplicationController
           total
         end || []
 
-        calendar = Calendar.new
-        @events = Rails.cache.fetch 'calendar', expires_in: 30.minutes do
-          calendar.fetch_events_from("http://www.google.com/calendar/embed?src=admin%40researchable.co&ctz=America/New_York ") || []
-        end
+
         @curated_pages = CuratedPage.visible.order("created_at desc").limit(8)
         @last_tweets = Rails.cache.fetch('last_tweets', :expires_in => 30.minutes) do
           begin
