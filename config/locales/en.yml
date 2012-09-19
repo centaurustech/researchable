@@ -362,7 +362,7 @@ en:
     backers:
       checkout:
         paypal_cancel: "Your PayPal payment was canceled. Please try again."
-        paypal_description: "Support project '%{project.name}' without your contribution of $%{value}."
+        paypal_description: "Support project '%{name}' without your contribution of %{value}."
         paypal_error: "Ooops. There was an error while sending your payment to PayPal. Please try again."
         success: "Your back was successfully made. Thanks a lot!"
       new:
