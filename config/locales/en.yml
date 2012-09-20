@@ -11,15 +11,15 @@ en:
       truncate: "..."
   statistics:
     backers:
-      subtitle: backers
+      subtitle: funders
     goal:
       subtitle: "total of %{total}"
   project_by: "project by"
-  tell_about_this_back: "Tell the world about your support!"
+  tell_about_this_back: "Tell the world about your contribution!"
   share_my_backs: "See projects I support in Researchable!"
   tell_about_this_project: "Tell the world about your project!"
   share_my_projects: "See my projects in Researchable!"
-  count_backed_projects: "backed %{total} projects"
+  count_backed_projects: "funded %{total} projects"
   footer:
     titles:
       info: "more info"
@@ -27,9 +27,9 @@ en:
       social: "like Researchable?"
       newsletter: "receive our newsletter"
     stats:
-      backers: Backers
-      backs: Backs
-      total_backed: Backed
+      backers: Funders
+      backs: Contributions
+      total_backed: Contributed
       users: Users
       funded_projects: "Successful projects"
       active_projects: "Projects on air now"
@@ -87,7 +87,7 @@ en:
         permalink: 'type your project URL ( http://researchable.co/myprojectname )'
       reward:
         description: Description
-        maximum_backers: "Maximum backers"
+        maximum_backers: "Maximum funders"
         minimum_value: "Minimum value"
       user:
         address_city: City
@@ -106,17 +106,17 @@ en:
         password_confirmation: "Password Confirmation"
         phone_number: "Mobile phone number"
     models:
-      backer: Backer
+      backer: Funder
       category: Category
       project: Project
       reward: Reward
   backer:
     display_confirmed_at: "%{time_ago} ago"
     reward_must_be_from_project: "must be from the same project"
-    should_not_back_if_maximum_backers_been_reached: "has reached its maximum backers"
+    should_not_back_if_maximum_backers_been_reached: "has reached its maximum funders"
     value_must_be_at_least_rewards_value: "must be at least %{minimum_value} for the selected reward"
-  backer_plural: backers
-  backer_singular: backer
+  backer_plural: funders
+  backer_singular: funder
   click_here: "Click here"
   clicking_here: "clicking here"
   click_term: 'terms'
@@ -151,7 +151,7 @@ en:
     index:
       title: "Curated pages"
     show:
-      backed: backed
+      backed: funded
       reached: reached
   devise:
     confirmations:
@@ -232,7 +232,7 @@ en:
   formtastic:
     hints:
       backer:
-        credits: "You have <strong>%{credits}</strong> in credits and can back with up to this amount without needing to make a new payment."
+        credits: "You have <strong>%{credits}</strong> in credits and can contribute with up to this amount without needing to make a new payment."
         value: "You chose the amount ;) starting with $5, any amount is great."
       project:
         about: "Tell us a little about your project, how much you need and what you need it for. Be brief and punctual. It's your project and they need to see your passion for it."
@@ -243,7 +243,7 @@ en:
         name: "What's the name of your project? Choose with care, because this will influence the chances of your project reaching the goal."
         video_url: "Paste the URL from a <a href=\"http://vimeo.com\" target=\"_blank\">Vimeo</a> video. This way, your project will look better too! Produce your video the best you can and make a video specifically for your campaign. If there is a single thing that differentiates the projects that reach the goal from the others is the video. Observe."
       reward:
-        description: "Include a reward for supporting your project. It could be as small as a copy of the final paper or as large as a trip the the field site."
+        description: "Include a reward for funding your project. It could be as small as a copy of the final paper or as large as a trip the the field site."
         maximum_backers: "If your reward is limited, tell us the maximum number of people who can have it."
         minimum_value: "This is the minimum amount to choose this reward."
     labels:
@@ -251,7 +251,7 @@ en:
         anonymous: "I want my support to be anonymous."
         credits: "I want to use my credits on this contribution."
         reward: "Select your reward"
-        value: "With how much do you want to back?"
+        value: "How much do you want to contribute?"
       comment:
         comment: "Leave your comment about this project"
       project:
@@ -261,13 +261,13 @@ en:
         name: "Name your project"
         video_url: Video
       reward:
-        maximum_backers: "Maximum backers (optional)"
+        maximum_backers: "Maximum supporters (optional)"
     optional: " (optional)"
   found_plural: Found
   found_singular: Found
   here: here
-  i_backed: "I backed the project %{name} on @Researchable_"
-  i_just_backed: "I just backed the project %{name} on @Researchable_"
+  i_backed: "I funded the project %{name} on @Researchable_"
+  i_just_backed: "I just funded the project %{name} on @Researchable_"
   layouts:
     login:
       login_with_facebook: "sign in with your facebook account"
@@ -310,7 +310,7 @@ en:
       header_subtitle: "Thanks for funding this project. Welcome to the team!"
       header_title: "Thank you! :D"
       text_subtitle: "Tell everyone what you just did"
-      text_title_html: "You are now part of the group supporting %{link}."
+      text_title_html: "You are now part of the group funding %{link}."
       title: "Thank you"
   project:
     start:
@@ -320,16 +320,16 @@ en:
     finish:
       successful:
         email_subject: "Congratulations! The project %{project_name} was successful on Researchable!"
-        email_text: "The project %{project_link}, that you have backed, was successfully funded! Let's celebrate o/<br><br>The project has, including you, %{project_total_backers} backers, raised %{project_pleged} and reached %{project_process}% of its goal =D<br><br>Something important to know: Researchable's team takes 3 days to send to the project creator the list with all information of the backers. So, the project creator will only be in touch with you to thank you and talk about the rewards delivery in a few days.<br><br>In this meantine, share with all your friends this sucess<br><br><div style='text-align:center;'>%{facebook_button}%{twitter_button}</div><br><br>If you want to get in touch with %{project_owner_name}, send an email to %{project_owner_email}.<br><br>If you have any other questions about Researchable, acess our FAQ: <a href='http://researchable.co/faq' style='color: #008800';>researchable.co/faq</a> or send an email to <a href='mail_to:admin@researchable.co' style='color: #008800;'>admin@researchable.co</a><br>"
-        facebook_text: "Awesome! The project '%{name}' I supported was successful on Researchable!"
-        notification_text: "Awesome! The project %{link} that you supported was successful! Spread the word!"
+        email_text: "The project %{project_link}, that you have funded, was successfully funded! Let's celebrate o/<br><br>The project has, including you, %{project_total_backers} funders, raised %{project_pleged} and reached %{project_process}% of its goal =D<br><br>Something important to know: Researchable's team takes 3 days to send to the project creator the list with all information of the funders. So, the project creator will only be in touch with you to thank you and talk about the rewards delivery in a few days.<br><br>In this meantine, share with all your friends this sucess<br><br><div style='text-align:center;'>%{facebook_button}%{twitter_button}</div><br><br>If you want to get in touch with %{project_owner_name}, send an email to %{project_owner_email}.<br><br>If you have any other questions about Researchable, acess our FAQ: <a href='http://researchable.co/faq' style='color: #008800';>researchable.co/faq</a> or send an email to <a href='mail_to:admin@researchable.co' style='color: #008800;'>admin@researchable.co</a><br>"
+        facebook_text: "Awesome! The project '%{name}' I funded was successful on Researchable!"
+        notification_text: "Awesome! The project %{link} that you funded was successful! Spread the word!"
         reward_notification_text: "Soon, %{link} will contact you to deliver your reward. Enjoy!"
-        twitter_text: "Awesome! The project '%{name}' I supported was successful on @Researchable_! %{short_url}"
+        twitter_text: "Awesome! The project '%{name}' I funded was successful on @Researchable_! %{short_url}"
       unsuccessful:
         email_subject: "The project %{project_name} wasn't successful on Researchable."
-        email_text: 'Unfortunately the project %{project_link}, that you have supported, did not reached its goal and was not funded at Researchable.<br><br>So, you have received <strong>%{value}</strong> in credits to back other projects. You can find other %{project_category} projects in %{explore_category_link}.<br><br>You also can ask for your refund by clicking in %{credits_link}. Remember that you signed up on Researchable using %{user_provider}. If you have some difficulty in this process, feel free to send an email to admin@researchable.co with the subject "Refund - login issue".<br><br>If, for any reason, you want to contact %{project_owner_name}, send an email to %{project_owner_email}.<br><br>If you have any other questions, access our FAQ or send an email to <a href="mail_to:admin@researchable.co" style="color: #008800;">admin@researchable.co</a>.<br>'
-        notification_text: "You received %{value} in credits to back other projects. If you prefer, you can request a refund %{link}."
-        unsuccessful_text: "The project %{link} that you backed wasn't funded. Maybe next time!"
+        email_text: 'Unfortunately the project %{project_link}, that you have funded, did not reached its goal and was not funded at Researchable.<br><br>So, you have received <strong>%{value}</strong> in credits to fund other projects. You can find other %{project_category} projects in %{explore_category_link}.<br><br>You also can ask for your refund by clicking %{credits_link}. Remember that you signed up on Researchable using a %{user_provider}. If you have some difficulty in this process, feel free to send an email to admin@researchable.co with the subject "Refund - login issue".<br><br>If, for any reason, you want to contact %{project_owner_name}, send an email to %{project_owner_email}.<br><br>If you have any other questions, access our FAQ or send an email to <a href="mail_to:admin@researchable.co" style="color: #008800;">admin@researchable.co</a>.<br>'
+        notification_text: "You received %{value} in credits to fund other projects. If you prefer, you can request a refund %{link}."
+        unsuccessful_text: "The project %{link} that you supported wasn't sufficiently funded. Maybe next time!"
     verify_if_video_exists_on_vimeo: "must exist on Vimeo"
     vimeo_regex_validation: "only Vimeo URLs are allowed"
     display_status:
@@ -348,13 +348,13 @@ en:
       project_warning:
         not_successful:
           expired: "This project didn't reach the goal of %{goal} until %{date} and wasn't funded"
-          not_expired: "This project will only be funded if at least %{goal} is backed until %{date}"
+          not_expired: "This project will only be funded if at least %{goal} is contributed until %{date}"
         successful:
           expired: "This project was successful and was funded on %{date}"
           not_expired: "This project will be successful and funded on %{date}"
         waiting_confirmation: "Waiting confirmation from payments to know if this project will be funded."
       reached_of: "Reached of"
-      submit: "Support this project"
+      submit: "Fund this project"
     backer:
       anonymous_backer: "Anonymous supporter"
       anonymous_description: "Opted to remain incognito"
@@ -362,19 +362,19 @@ en:
     backers:
       checkout:
         paypal_cancel: "Your PayPal payment was canceled. Please try again."
-        paypal_description: "Support the project '%{project_name}' without your contribution of %{value}."
+        paypal_description: "Fund the project '%{project_name}' with your contribution of %{value}."
         paypal_error: "Ooops. There was an error while sending your payment to PayPal. Please try again."
-        success: "Your back was successfully made. Thanks a lot!"
+        success: "Your contribution was successful. Thanks a lot!"
       new:
-        cannot_back: "It's not possible to support this project right now. Please, support other projects."
+        cannot_back: "It's not possible to fund this project right now. Please, support other projects."
         header:
           subtitle: "You are a few steps from making the difference and becoming part of this project."
           title: "Thanks"
         no_reward: "Thanks. I just want to help the project."
         submit: "Review and proceed to checkout"
-        title: "Back %{name}"
+        title: "Fund %{name}"
       review:
-        credits_notice_html: "This contribution will be payed with your credits. After the confirmation, you will have <strong>%{credits}</strong> in credits to support other projects."
+        credits_notice_html: "This contribution will be payed with your credits. After the confirmation, you will have <strong>%{credits}</strong> in credits to fund other projects."
         error: "Ooops. There was an error while registering your contribution. Please try again."
         international:
           description: "Use PayPal to make payments"
@@ -402,7 +402,7 @@ en:
       project_warning:
         content_html: "Want to have your project selected? Don't forget to read %{link}."
         help_link: "our guide"
-      rewards_description: "We believe that the best way to gain supporters and new partnerships is to offer access to the results of your project. Rewards can be as small as a copy of the final paper or as large as a trip to the field site. Spend some time devising creative rewards and people will be interested."
+      rewards_description: "We believe that the best way to gain contributors and build new partnerships is to offer access to the results of your project. Rewards can be as small as a copy of the final paper or as large as a trip to the field site. Spend some time devising creative rewards and people will be interested."
       rewards_title: Rewards
       submit: "Submit project"
     index_header:
@@ -433,24 +433,24 @@ en:
       credits: "Used credits?"
       id: Id
       key: Key
-      no_backers: "No backers found."
+      no_backers: "No contributors found."
       project: Project
       refunded: Refunded?
       requested_refund: "Requested refund?"
       reward: Reward
       submit: Search
-      title: "Backers management"
-      total_backed: backed
-      total_backers: backers
-      total_backs: backs
+      title: "Funders management"
+      total_backed: funded
+      total_backers: funders
+      total_backs: contributions
       total_users: users
       user: User
       value: Value
     project:
-      backed: backed
+      backed: funders
       reached: reached
     project_backers:
-      empty: "Nobody has supported this project so far. How about being the first one?"
+      empty: "Nobody has funded this project so far. How about being the first one?"
     project_header:
       subtitle_html: "A project by %{link}"
       without_city: "A project in %{category_name}, by %{author}"
@@ -464,7 +464,7 @@ en:
       destroy_confirmation: "Do you want to remove the update?"
     rewards:
       reward_title: "For %{minimum} or more"
-      title: "Back and receive..."
+      title: "Contribute and receive..."
     send_mail:
       success: "Your project was successfully sent! We'll soon contact you. Thanks a lot!"
     show:
@@ -473,7 +473,7 @@ en:
       about_title: "About"
       menu:
         about: About
-        backers: Backers
+        backers: Funders
         comments: Comments
         updates: Updates
       share:
@@ -497,12 +497,12 @@ en:
       facebook: "Do you have a facebook account?"
       blog: "Done you have a blog about the project?"
       know_us_via: "How did you find out about Researchable?"
-      how_works: "How to mobilize supporters to raise money?"
+      how_works: "How to mobilize funders to raise money?"
       project_warning:
         content_html: "Want to have your project selected? Don't forget to read %{link}."
         help_link: "our guide"
       rewards: "What rewards do you want to offer?"
-      rewards_hint: "We believe that the best way to gain supporters and new partnerships is to offer access to the results of your project. Rewards can be as small as a copy of the final paper or as large as a trip to the field site. Spend some time devising creative rewards and people will be interested."
+      rewards_hint: "We believe that the best way to gain funders and new partnerships is to offer access to the results of your project. Rewards can be as small as a copy of the final paper or as large as a trip to the field site. Spend some time devising creative rewards and people will be interested."
       submit: "Submit the project"
       subtitle: "The time to make it happen is now! We really want to know what you're up to..."
       title: "Submit your project"
@@ -548,7 +548,7 @@ en:
       system: system@researchable.co
     facebook: "http://www.facebook.com/Researchable"
     name: Researchable
-    title: "Crowdfunding Academia"
+    title: Researchable
     twitter: Researchable_
   static:
     faq:
@@ -585,11 +585,11 @@ en:
         twitter: "Profile on twiiter"
     backs:
       anonymous: "Anonymous support."
-      no_backs: "%{name} haven't supported any project yet."
-      no_backs_current_user_html: "You haven't supported any project yet. What about <a href=\"/\">starting now</a>?"
+      no_backs: "%{name} haven't funded any project yet."
+      no_backs_current_user_html: "You haven't funded any project yet. What about <a href=\"/\">starting now</a>?"
       no_reward: "You didn't pick a reward"
-      title: "Projects %{name} has supported"
-      title_current_user: "Projects I've supported"
+      title: "Projects %{name} has funded"
+      title_current_user: "Projects I've funded"
       your_reward: "Your reward"
     current_user_fields:
       updated: "Your information has been updated"
@@ -600,7 +600,7 @@ en:
       other_link: "another internet page"
       change_password: "Change my password"
       current_password_hint: "<i>We need your current password to confirm your changes.</i>"
-      email_hint: "Your email will only be used for communications from Researchable and from the projects you support. It won't be visible in your profile. When you fund a project, we will give your email to the project owner so he can provide your rewards."
+      email_hint: "Your email will only be used for communications from Researchable and from the projects you fund. It won't be visible in your profile. When you fund a project, we will give your email to the project owner so he can provide your rewards."
       email_tooltip: "Click here to fill your email..."
       gravatar_hint_html: "Want to change your picture? Use %{link} with your email."
       local_avatar: "My avatar"
@@ -641,46 +641,46 @@ en:
       text: "%{update_title}<br />%{update_text}<br />Comments? Post it on the project page: <a href='%{project_link}'>%{project_name}</a>."
   admin:
     users:
-      title: "Manage Backers"
-      menu: Backers
+      title: "Manage Funders"
+      menu: Funders
       credits: Credits
       credits_view: "Calculated credits"
       id: Id
       key: Key
       submit: Search
       has_credits_difference: "Discrepancy in credits"
-      total_backed: backed
-      total_backers: backers
-      total_backs: backs
+      total_backed: funded
+      total_backers: funders
+      total_backs: contributions
       total_users: users
       total_credits: credits
       total_credits_view: "calculated credits"
       user: User
       value: Value
     backers:
-      title: "Backers management"
-      menu: Backs
+      title: "Funders management"
+      menu: Contributions
       anonymous: Anonymous?
       confirmed: Confirmed?
       credits: "Used credits?"
       id: Id
       key: Key
-      no_backers: "No backers found."
+      no_backers: "No funders found."
       project: Project
       refunded: Refunded?
       requested_refund: "Requested refund?"
       reward: Reward
       submit: Search
-      total_backed: backed
-      total_backers: backers
-      total_backs: backs
+      total_backed: funded
+      total_backers: funders
+      total_backs: contributions
       total_users: Users
       user: User
       value: Value
   adm:
     backers:
         index:
-            menu: "Backers"
+            menu: "Funders"
     users:
         index:
             menu: "Users"
