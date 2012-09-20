@@ -574,7 +574,7 @@ en:
     show:
       attention: Attention
       tabs:
-        backed_projects: "Funded projects"
+        backed_projects: "Finshed projects"
         created_projects: "Created projects"
         comments: Comments
         credits: Credits

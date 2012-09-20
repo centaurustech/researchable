@@ -578,9 +578,9 @@ pt:
         credits: Créditos
         settings: Preferências
       user_social:
-        email: "Me envie um email"
-        facebook: "Perfil no facebook"
-        twitter: "Perfil no twitter"
+        email: "Send me an email"
+        facebook: "Profile on facebook"
+        twitter: "Profile on twitter"
     backs:
       anonymous: "Apoio anônimo."
       no_backs: "%{name} ainda não apoiou nenhum projeto. Mas a gente sabe que é só questão de tempo! :D"
