@@ -5,6 +5,8 @@ ActiveAdmin.register Project do
   filter :category
   filter :created_at
   filter :updated_at
+  filter :visible
+  filter :recommended
   filter :can_finish
   filter :finished
 
@@ -33,6 +35,8 @@ ActiveAdmin.register Project do
       f.input :about
       f.input :headline
       f.input :video_url, :as => :string
+      f.input :visible
+      f.input :recommended
       f.input :can_finish
       f.input :finished
     end
