@@ -66,7 +66,7 @@ class Project < ActiveRecord::Base
   validates_uniqueness_of :permalink, :allow_blank => true, :allow_nil => true
   validates_format_of :permalink, with: /^(\w|-)*$/, :allow_blank => true, :allow_nil => true
   before_create :store_image_url
-
+  
   def store_image_url
     self.image_url = vimeo.thumbnail unless self.image_url
   end

@@ -2,20 +2,20 @@ xml.instruct!
 xml.urlset "xmlns" => "http://www.sitemaps.org/schemas/sitemap/0.9" do
 
   xml.url do
-    xml.loc "http://researchable.co"
+    xml.loc "http://researchable.info"
     xml.priority 1.0
     xml.changefreq "daily"
   end
 
   %w[pt en].each do |locale|
     xml.url do
-      xml.loc "http://researchable.co/#{locale}"
+      xml.loc "http://researchable.info/#{locale}"
       xml.priority 0.9
       xml.changefreq "daily"
     end
     %w[guidelines faq terms privacy].each do |static|
       xml.url do
-        xml.loc "http://researchable.co/#{locale}/#{static}"
+        xml.loc "http://researchable.info/#{locale}/#{static}"
         xml.priority 0.1
         xml.changefreq "monthly"
       end

@@ -84,7 +84,7 @@ en:
         name: Name
         user_id: "User Id"
         video_url: "Video URL"
-        permalink: 'type your project URL ( http://researchable.co/myprojectname )'
+        permalink: 'type your project URL ( http://researchable.info/myprojectname )'
       reward:
         description: Description
         maximum_backers: "Maximum funders"
@@ -241,7 +241,7 @@ en:
         goal: "Think hard about the amount you will ask for. It should be the minimum necessary for the project to happen. Nothing more, nothing less. If you ask too much, your chances of reaching the minimum will be lower; if you don't ask for enough, you won't be able to finish the project."
         headline: "Summarize your project in 140 characters. This sentence will be the first contact people will have with your project. Be creative, clear and direct."
         name: "What's the name of your project? Choose with care, because this will influence the chances of your project reaching the goal."
-        video_url: "Paste the URL from a <a href=\"http://vimeo.com\" target=\"_blank\">Vimeo</a> video. This way, your project will look better too! Produce your video the best you can and make a video specifically for your campaign. If there is a single thing that differentiates the projects that reach the goal from the others is the video. Observe."
+        video_url: "Paste the URL from a %{vimeo_link} link. Don't have a video for your project? You can create one with some photos from your computer easily here on %{animoto_link}."
       reward:
         description: "Include a reward for funding your project. It could be as small as a copy of the final paper or as large as a trip the the field site."
         maximum_backers: "If your reward is limited, tell us the maximum number of people who can have it."
@@ -320,14 +320,14 @@ en:
     finish:
       successful:
         email_subject: "Congratulations! The project %{project_name} was successful on Researchable!"
-        email_text: "The project %{project_link}, that you have funded, was successfully funded! Let's celebrate o/<br><br>The project has, including you, %{project_total_backers} funders, raised %{project_pleged} and reached %{project_process}% of its goal =D<br><br>Something important to know: Researchable's team takes 3 days to send to the project creator the list with all information of the funders. So, the project creator will only be in touch with you to thank you and talk about the rewards delivery in a few days.<br><br>In this meantine, share with all your friends this sucess<br><br><div style='text-align:center;'>%{facebook_button}%{twitter_button}</div><br><br>If you want to get in touch with %{project_owner_name}, send an email to %{project_owner_email}.<br><br>If you have any other questions about Researchable, acess our FAQ: <a href='http://researchable.co/faq' style='color: #008800';>researchable.co/faq</a> or send an email to <a href='mail_to:admin@researchable.co' style='color: #008800;'>admin@researchable.co</a><br>"
+        email_text: "The project %{project_link}, that you have funded, was successfully funded! Let's celebrate o/<br><br>The project has, including you, %{project_total_backers} funders, raised %{project_pleged} and reached %{project_process}% of its goal =D<br><br>Something important to know: Researchable's team takes 3 days to send to the project creator the list with all information of the funders. So, the project creator will only be in touch with you to thank you and talk about the rewards delivery in a few days.<br><br>In this meantine, share with all your friends this sucess<br><br><div style='text-align:center;'>%{facebook_button}%{twitter_button}</div><br><br>If you want to get in touch with %{project_owner_name}, send an email to %{project_owner_email}.<br><br>If you have any other questions about Researchable, acess our FAQ: <a href='http://researchable.info/faq' style='color: #008800';>researchable.info/faq</a> or send an email to <a href='mail_to:admin@researchable.info' style='color: #008800;'>admin@researchable.info</a><br>"
         facebook_text: "Awesome! The project '%{name}' I funded was successful on Researchable!"
         notification_text: "Awesome! The project %{link} that you funded was successful! Spread the word!"
         reward_notification_text: "Soon, %{link} will contact you to deliver your reward. Enjoy!"
         twitter_text: "Awesome! The project '%{name}' I funded was successful on @Researchable_! %{short_url}"
       unsuccessful:
         email_subject: "The project %{project_name} wasn't successful on Researchable."
-        email_text: 'Unfortunately the project %{project_link}, that you have funded, did not reached its goal and was not funded at Researchable.<br><br>So, you have received <strong>%{value}</strong> in credits to fund other projects. You can find other %{project_category} projects in %{explore_category_link}.<br><br>You also can ask for your refund by clicking %{credits_link}. Remember that you signed up on Researchable using a %{user_provider}. If you have some difficulty in this process, feel free to send an email to admin@researchable.co with the subject "Refund - login issue".<br><br>If, for any reason, you want to contact %{project_owner_name}, send an email to %{project_owner_email}.<br><br>If you have any other questions, access our FAQ or send an email to <a href="mail_to:admin@researchable.co" style="color: #008800;">admin@researchable.co</a>.<br>'
+        email_text: 'Unfortunately the project %{project_link}, that you have funded, did not reached its goal and was not funded at Researchable.<br><br>So, you have received <strong>%{value}</strong> in credits to fund other projects. You can find other %{project_category} projects in %{explore_category_link}.<br><br>You also can ask for your refund by clicking %{credits_link}. Remember that you signed up on Researchable using a %{user_provider}. If you have some difficulty in this process, feel free to send an email to admin@researchable.info with the subject "Refund - login issue".<br><br>If, for any reason, you want to contact %{project_owner_name}, send an email to %{project_owner_email}.<br><br>If you have any other questions, access our FAQ or send an email to <a href="mail_to:admin@researchable.info" style="color: #008800;">admin@researchable.info</a>.<br>'
         notification_text: "You received %{value} in credits to fund other projects. If you prefer, you can request a refund %{link}."
         unsuccessful_text: "The project %{link} that you supported wasn't sufficiently funded. Maybe next time!"
     verify_if_video_exists_on_vimeo: "must exist on Vimeo"
@@ -492,7 +492,7 @@ en:
       links: "Where can we find more about you and your project?"
       links_hint: "Leave us as many links as you have, so we can get to know your work and your project better. Doesn't have to be something formal or fancy, just a few useful links."
       video: "Does your project already have a video?"
-      video_hint: "A vimeo link"
+      video_hint: "If so, include a link to the video on Vimeo. If not, you can use a collection of photos to compile into a montage described on our guide linked above."
       twitter: "Do you have a twitter account?"
       facebook: "Do you have a facebook account?"
       blog: "Done you have a blog about the project?"
@@ -538,14 +538,14 @@ en:
     failure:
       error: "There was an error while loggin in. Please try again."
   site:
-    host: researchable.co
-    base_url: "http://researchable.co"
-    blog: "http://blog.researchable.co/"
+    host: researchable.info
+    base_url: "http://researchable.info"
+    blog: "http://blog.researchable.info/"
     email:
-      contact: contact@researchable.co
-      payments: payments@researchable.co
-      projects: projects@researchable.co
-      system: system@researchable.co
+      contact: contact@researchable.info
+      payments: payments@researchable.info
+      projects: projects@researchable.info
+      system: system@researchable.info
     facebook: "http://www.facebook.com/Researchable"
     name: Researchable
     title: Researchable
