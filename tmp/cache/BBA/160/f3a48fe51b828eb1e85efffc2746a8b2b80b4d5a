@@ -1,4 +1,4 @@
-CATARSE.ProjectsShowView = Backbone.View.extend({
+o: ActiveSupport::Cache::Entry	:@compressedF:@expires_in0:@created_atf1348488942.705654:@value"Û[I"ÍCATARSE.ProjectsShowView = Backbone.View.extend({
 
   initialize: function() {
     _.bindAll(this, "render", "BackerView", "BackersView", "about", "updates", "backers", "comments", "embed", "isValid", "backWithReward")
@@ -175,3 +175,5 @@ CATARSE.ProjectsShowView = Backbone.View.extend({
   }
 
 })
+;
+:EF
