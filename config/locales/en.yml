@@ -406,7 +406,7 @@ en:
       rewards_title: Rewards
       submit: "Submit project"
     index_header:
-      subtitle_html: "Fund projects collaboratively and become part of something bigger.<br/> Take control over your own projects and direct the future of academic research."
+      subtitle_html: "Fund projects collaboratively and become part of something greater.<br/> Take control over your projects and direct the networks of academic research."
       title: "Support the World's Research"
     new:
       subtitle: "The time to make you project happen is now! We really want to know what you're up to..."
@@ -547,6 +547,7 @@ en:
       projects: projects@researchable.info
       system: system@researchable.info
     facebook: "http://www.facebook.com/Researchable"
+    facebook_app_id: "313509242017897"
     name: Researchable
     title: Researchable
     twitter: Researchable_
