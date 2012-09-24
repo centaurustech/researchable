@@ -28,15 +28,11 @@
           = f.label :other_link, t('.other_link')
           = f.text_field :other_link
           = f.input :full_name, :required => true, :as => :string
-          = f.input :cpf, :as => :string, :input_html => {:autocomplete => 'off'}
-          = f.input :address_street, :as => :string
           = f.input :address_number, :as => :string
-          = f.input :address_complement, :required => false, :as => :string
-          = f.input :address_neighbourhood, :as => :string
-          = f.input :address_zip_code, :as => :string, :input_html => {:autocomplete => 'off'}
+          = f.input :address_street, :as => :string
           = f.input :address_city, :as => :string
-          = f.input :address_state, :as => :select, :collection => State.array
-          = f.input :phone_number, :as => :string, :input_html => {:autocomplete => 'off'}
+          = f.input :address_zip_code, :as => :string, :input_html => {:autocomplete => 'off'}
+          = f.input :cpf, :as => :string 
           = f.label :email, t('.email')
           #{on_the_spot_edit @user, :email, :tooltip => t('.email_tooltip')}
           .hint= t('.email_hint')
