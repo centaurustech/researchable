@@ -611,7 +611,7 @@ en:
       newsletter: "I want to receive news from Researchable via email"
       password_hint: "<i>Leave blank if you don't want to change it.</i>"
     header:
-      bio_tooltip: "Click here to write about you..."
+      bio_tooltip: "Write the name of your institution here..."
       name_tooltip: "Click here to fill your name..."
     projects:
       no_projects: "%{name} hasn't started any projects on Researchable yet."
