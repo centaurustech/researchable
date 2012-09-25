@@ -51,6 +51,8 @@ gem 'rails_autolink', '~> 1.0.7'
 gem 'carrierwave', '= 0.5.8'
 gem 'rmagick'
 gem 'fog'
+gem 'paperclip'
+gem 'aws-s3'
 
 
 # Other Tools

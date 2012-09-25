@@ -1,5 +1,8 @@
 .video_sample
-  iframe src="#{project.vimeo.embed_url}?title=0&amp;byline=0&amp;portrait=0&amp" width="461" height="258" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen
+  - if project.video_url
+    iframe src="#{project.vimeo.embed_url}?title=0&amp;byline=0&amp;portrait=0&amp" width="461" height="258" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen
+  - else 
+    .image= link_to (image_tag project.image_url, :width => "461", :height => "258"), project_path(project)
 .info
   h3= title
   h2
