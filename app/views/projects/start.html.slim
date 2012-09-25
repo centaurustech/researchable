@@ -33,6 +33,12 @@
               = text_field_tag 'video'
               p.inline-hints= t('.video_hint')
             .input
+              = label_tag 'flickr', t('.flickr')
+              .input-prepend
+                span.add-on http://flickr.com/
+                = text_field_tag 'flickr'
+              p.inline-hints= t('.flickr_hint')
+            .input
               = label_tag 'facebook', t('.facebook')
               = text_field_tag 'facebook'
             .input

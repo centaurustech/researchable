@@ -106,7 +106,7 @@ group :test, :development do
   gem 'rspec-rails', "~> 2.10.0"
   gem 'rcov', '= 0.9.11'
   gem 'mocha', '0.10.4'
-  gem 'shoulda'
+  gem 'shoulda', :require => false
   gem 'factory_girl_rails', '1.7.0'
   gem 'capybara', ">= 1.0.1"
 end

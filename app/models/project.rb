@@ -61,7 +61,7 @@ class Project < ActiveRecord::Base
 
   search_methods :visible, :recommended, :expired, :not_expired, :expiring, :not_expiring, :recent, :successful
 
-  validates_presence_of :name, :user, :category, :about, :headline, :goal, :expires_at, :video_url
+  validates_presence_of :name, :user, :category, :about, :headline, :goal, :expires_at
   validates_length_of :headline, :maximum => 140
   validates_uniqueness_of :permalink, :allow_blank => true, :allow_nil => true
   validates_format_of :permalink, with: /^(\w|-)*$/, :allow_blank => true, :allow_nil => true
@@ -76,6 +76,7 @@ class Project < ActiveRecord::Base
   end
 
   def display_image
+    return flickr_url if flickr_url
     return image_url if image_url
     return "user.png" unless vimeo.thumbnail
     vimeo.thumbnail

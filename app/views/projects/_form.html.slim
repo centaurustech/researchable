@@ -14,6 +14,7 @@
       = form.text_field :permalink, :class => 'permalink'
     = form.input :name, :as => :string
     = form.input :video_url, :as => :string
+    = form.input :flickr_url, :as => :string
     = form.input :about
     = form.input :headline, :input_html => { :maxlength => 140 }
     = form.input :category, :collection => Category.all(:order => :name)

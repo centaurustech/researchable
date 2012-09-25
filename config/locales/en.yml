@@ -84,6 +84,7 @@ en:
         name: Name
         user_id: "User Id"
         video_url: "Video URL"
+        flickr_url: "Flickr URL"
         permalink: 'type your project URL ( http://researchable.info/myprojectname )'
       reward:
         description: Description
@@ -241,7 +242,8 @@ en:
         goal: "Think hard about the amount you will ask for. It should be the minimum necessary for the project to happen. Nothing more, nothing less. If you ask too much, your chances of reaching the minimum will be lower; if you don't ask for enough, you won't be able to finish the project."
         headline: "Summarize your project in 140 characters. This sentence will be the first contact people will have with your project. Be creative, clear and direct."
         name: "What's the name of your project? Choose with care, because this will influence the chances of your project reaching the goal."
-        video_url: "Paste the URL from a %{vimeo_link} link. Don't have a video for your project? You can create one with some photos from your computer easily here on %{animoto_link}."
+        video_url: "Paste the URL from a Vimeo link. Don't have a video for your project? You can submit a flickr image below."
+        flickr_url: "Paste the URL from a Flickr link. Make sure that you have permisssion to use it, if it is not your own."
       reward:
         description: "Include a reward for funding your project. It could be as small as a copy of the final paper or as large as a trip the the field site."
         maximum_backers: "If your reward is limited, tell us the maximum number of people who can have it."
@@ -492,7 +494,9 @@ en:
       links: "Where can we find more about you and your project?"
       links_hint: "Leave us as many links as you have, so we can get to know your work and your project better. Doesn't have to be something formal or fancy, just a few useful links."
       video: "Does your project already have a video?"
-      video_hint: "If so, include a link to the video on Vimeo. If not, you can use a collection of photos to compile into a montage described on our guide linked above."
+      video_hint: "If so, include a link to the video on Vimeo. If not, you can use a collection of photos to compile into a montage described on our guide linked above or post a link to a flickr image below."
+      flickr: "No Video? You can include a link to an image on flickr"
+      flickr_hint: "Enter the flickr url of the photo you'd like to include as the project's image."
       twitter: "Do you have a twitter account?"
       facebook: "Do you have a facebook account?"
       blog: "Done you have a blog about the project?"

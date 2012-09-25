@@ -482,6 +482,7 @@ CREATE TABLE projects (
     home_page_comment text,
     successful boolean DEFAULT false,
     permalink character varying(255),
+    flickr_url text,
     CONSTRAINT projects_about_not_blank CHECK ((length(btrim(about)) > 0)),
     CONSTRAINT projects_headline_length_within CHECK (((length(headline) >= 1) AND (length(headline) <= 140))),
     CONSTRAINT projects_headline_not_blank CHECK ((length(btrim(headline)) > 0)),
@@ -1521,3 +1522,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120808123236');
 INSERT INTO schema_migrations (version) VALUES ('20120816161341');
 
 INSERT INTO schema_migrations (version) VALUES ('20120828194453');
+
+INSERT INTO schema_migrations (version) VALUES ('20120925112402');
