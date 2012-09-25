@@ -26326,3 +26326,276 @@ Served asset /logo.png - 304 Not Modified (0ms)
 
 Started GET "/assets/MUSEO500.TTF" for 127.0.0.1 at 2012-09-25 13:02:56 -0400
 Served asset /MUSEO500.TTF - 304 Not Modified (0ms)
+
+
+Started GET "/en/egypt-in-transit" for 127.0.0.1 at 2012-09-25 13:13:29 -0400
+Processing by ProjectsController#show as HTML
+  Parameters: {"permalink"=>"egypt-in-transit", "locale"=>"en"}
+  [1m[36mStatistics Load (0.9ms)[0m  [1mSELECT "statistics".* FROM "statistics" LIMIT 1[0m
+  [1m[35mProject Load (0.5ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."permalink" = 'egypt-in-transit' LIMIT 1
+  [1m[36mReward Load (0.4ms)[0m  [1mSELECT "rewards".* FROM "rewards" WHERE "rewards"."project_id" = 2 ORDER BY minimum_value[0m
+  [1m[35mBacker Load (0.5ms)[0m  SELECT "backers".* FROM "backers" WHERE "backers"."project_id" = 2 AND "backers"."confirmed" = 't' ORDER BY confirmed_at DESC LIMIT 12
+  [1m[36mUser Load (0.5ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mUser Load (0.5ms)[0m  SELECT "users".* FROM "users" WHERE "users"."primary_user_id" = 1 AND "users"."provider" = 'facebook' LIMIT 1
+  Rendered projects/_backer.html.slim (0.7ms)
+  [1m[36mCategory Load (0.5ms)[0m  [1mSELECT "categories".* FROM "categories" WHERE "categories"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectTotal Load (0.4ms)[0m  SELECT "project_totals".* FROM "project_totals" WHERE "project_totals"."project_id" = 2 LIMIT 1
+  [1m[36m (0.6ms)[0m  [1mSELECT COUNT(*) FROM "backers" WHERE "backers"."user_id" = 1 AND "backers"."confirmed" = 't' AND "backers"."anonymous" = 'f'[0m
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "backers" WHERE "backers"."user_id" = 1 AND "backers"."confirmed" = 't' AND "backers"."anonymous" = 'f'
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "backers" WHERE "backers"."user_id" = 1 AND "backers"."confirmed" = 't' AND "backers"."anonymous" = 'f'[0m
+  [1m[35m (0.7ms)[0m  SELECT COUNT(*) FROM "updates" WHERE "updates"."project_id" = 2
+  [1m[36mCACHE (0.0ms)[0m  [1mSELECT COUNT(*) FROM "updates" WHERE "updates"."project_id" = 2[0m
+  Rendered updates/index.html.slim (0.8ms)
+  Rendered projects/_comments.html.slim (0.1ms)
+  Rendered projects/_facebook.html.slim (3.1ms)
+  Rendered projects/_twitter.html.erb (0.3ms)
+  [1m[35mCACHE (0.0ms)[0m  SELECT COUNT(*) FROM "backers" WHERE "backers"."user_id" = 1 AND "backers"."confirmed" = 't' AND "backers"."anonymous" = 'f'
+  [1m[36m (0.9ms)[0m  [1mSELECT COUNT(*) FROM "backers" WHERE "backers"."reward_id" = 2 AND "backers"."confirmed" = 't'[0m
+  Rendered projects/_show_embed.html.slim (2.5ms)
+  Rendered projects/show.html.slim within layouts/application (60.4ms)
+  Rendered layouts/_analytics.html.slim (0.1ms)
+  Rendered layouts/_uservoice.html.slim (0.0ms)
+  Rendered projects/_facebook_sdk.html.slim (0.0ms)
+  Rendered layouts/_header.html.slim (3.1ms)
+Completed 200 OK in 198ms (Views: 184.0ms | ActiveRecord: 6.3ms)
+
+
+Started GET "/assets/lib/jquery-1.7.1.min.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:30 -0400
+Served asset /lib/jquery-1.7.1.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/jquery_ujs.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:30 -0400
+Served asset /jquery_ujs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lib/underscore-min.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:30 -0400
+Served asset /lib/underscore-min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lib/backbone-min.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:30 -0400
+Served asset /lib/backbone-min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lib/bootstrap.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:30 -0400
+Served asset /lib/bootstrap.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lib/jquery-ui-1.8.6.custom.min.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:30 -0400
+Served asset /lib/jquery-ui-1.8.6.custom.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lib/jquery-ui.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:30 -0400
+Served asset /lib/jquery-ui.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lib/jquery.cpf.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:30 -0400
+Served asset /lib/jquery.cpf.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lib/jquery.jeditable.mini.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:30 -0400
+Served asset /lib/jquery.jeditable.mini.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lib/jquery.maskedinput-1.2.2.min.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:30 -0400
+Served asset /lib/jquery.maskedinput-1.2.2.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lib/jquery.maxlength.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:30 -0400
+Served asset /lib/jquery.maxlength.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lib/jquery.numeric.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:30 -0400
+Served asset /lib/jquery.numeric.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lib/jquery.scrollto.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:30 -0400
+Served asset /lib/jquery.scrollto.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lib/jquery.timers-1.2.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:30 -0400
+Served asset /lib/jquery.timers-1.2.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lib/jquery.ui.datepicker-pt-BR.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:30 -0400
+Served asset /lib/jquery.ui.datepicker-pt-BR.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lib/on_the_spot.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:30 -0400
+Served asset /lib/on_the_spot.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lib/timedKeyup.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:30 -0400
+Served asset /lib/timedKeyup.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lib/twitter.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:30 -0400
+Served asset /lib/twitter.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/lib/waypoints.min.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:30 -0400
+Served asset /lib/waypoints.min.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/catarse.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:30 -0400
+Served asset /app/catarse.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/views/model.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:30 -0400
+Served asset /app/views/model.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/views/paginated.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:30 -0400
+Served asset /app/views/paginated.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/collections/paginated.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:30 -0400
+Served asset /app/collections/paginated.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/collections/backers.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/collections/backers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/collections/projects.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/collections/projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/collections/user_backs.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/collections/user_backs.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/collections/user_projects.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/collections/user_projects.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/models/backer.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/models/backer.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/models/project.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/models/project.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/models/user.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/models/user.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/models/user_back.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/models/user_back.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/models/user_project.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/models/user_project.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/router.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/router.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/views/adm/users.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/views/adm/users.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/views/credits/index.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/views/credits/index.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/views/explore/index.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/views/explore/index.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/views/layouts/application.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/views/layouts/application.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/views/projects/backers/new.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/views/projects/backers/new.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/views/projects/backers/review.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/views/projects/backers/review.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/views/projects/embed.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/views/projects/embed.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/views/projects/index.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/views/projects/index.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/views/projects/new.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/views/projects/new.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/views/projects/pending.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/views/projects/pending.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/views/projects/pending_backers.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/views/projects/pending_backers.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/views/projects/show.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/views/projects/show.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/views/projects/start.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/views/projects/start.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/views/projects/video_embed.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/views/projects/video_embed.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/views/static/guidelines.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/views/static/guidelines.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/app/views/users/show.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /app/views/users/show.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/init.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /init.js - 304 Not Modified (0ms)
+
+
+Started GET "/assets/application.js?body=1" for 127.0.0.1 at 2012-09-25 13:13:31 -0400
+Served asset /application.js - 304 Not Modified (2ms)
+
+
+Started GET "/en/projects/2-egypt-in-transit/embed" for 127.0.0.1 at 2012-09-25 13:13:34 -0400
+Processing by ProjectsController#embed as HTML
+  Parameters: {"id"=>"2-egypt-in-transit", "locale"=>"en"}
+  [1m[35mStatistics Load (0.8ms)[0m  SELECT "statistics".* FROM "statistics" LIMIT 1
+  [1m[36mProject Load (0.4ms)[0m  [1mSELECT "projects".* FROM "projects" WHERE "projects"."id" = $1 LIMIT 1[0m  [["id", "2-egypt-in-transit"]]
+  [1m[35mCategory Load (0.4ms)[0m  SELECT "categories".* FROM "categories" WHERE "categories"."id" = 1 LIMIT 1
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  [1m[35mProjectTotal Load (0.9ms)[0m  SELECT "project_totals".* FROM "project_totals" WHERE "project_totals"."project_id" = 2 LIMIT 1
+  Rendered projects/_box.html.slim (16.4ms)
+  Rendered projects/embed.html.slim within layouts/embed (18.5ms)
+  Rendered layouts/_analytics.html.slim (0.1ms)
+Completed 200 OK in 38ms (Views: 31.5ms | ActiveRecord: 3.3ms)
+
+
+Started GET "/en/projects/2-egypt-in-transit/video_embed" for 127.0.0.1 at 2012-09-25 13:13:34 -0400
+Processing by ProjectsController#video_embed as HTML
+  Parameters: {"id"=>"2-egypt-in-transit", "locale"=>"en"}
+  [1m[36mStatistics Load (0.8ms)[0m  [1mSELECT "statistics".* FROM "statistics" LIMIT 1[0m
+  [1m[35mProject Load (0.3ms)[0m  SELECT "projects".* FROM "projects" WHERE "projects"."id" = $1 LIMIT 1  [["id", "2-egypt-in-transit"]]
+  [1m[36mUser Load (0.7ms)[0m  [1mSELECT "users".* FROM "users" WHERE "users"."id" = 1 LIMIT 1[0m
+  Rendered projects/video_embed.html.slim within layouts/embed (7.5ms)
+  Rendered layouts/_analytics.html.slim (0.0ms)
+Completed 200 OK in 23ms (Views: 18.1ms | ActiveRecord: 1.8ms)
+
+
+Started GET "/assets/catarse/embed_icon19x9.png" for 127.0.0.1 at 2012-09-25 13:13:34 -0400
+Served asset /catarse/embed_icon19x9.png - 304 Not Modified (0ms)
+
+
+Started GET "/assets/loading.gif" for 127.0.0.1 at 2012-09-25 13:13:34 -0400
+Served asset /loading.gif - 304 Not Modified (0ms)
+
+
+Started GET "/assets/logo.png" for 127.0.0.1 at 2012-09-25 13:13:35 -0400
+Served asset /logo.png - 304 Not Modified (0ms)
