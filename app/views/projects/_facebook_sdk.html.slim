@@ -3,6 +3,7 @@ javascript:
   window.fbAsyncInit = function() {
     FB.init({
       appId      : '#{t('site.facebook_app_id')}', // App ID
+      channelUrl : '#{t('site.base_url')}channel.html',
       status     : true, 
       cookie     : true, 
       xfbml      : true  
@@ -13,6 +14,6 @@ javascript:
      var js, id = 'facebook-jssdk', ref = d.getElementsByTagName('script')[0];
      if (d.getElementById(id)) {return;}
      js = d.createElement('script'); js.id = id; js.async = true;
-     js.src = "//connect.facebook.net/en_GB/all.js";
+     js.src = "//connect.facebook.net/en_US/all.js";
      ref.parentNode.insertBefore(js, ref);
    }(document));

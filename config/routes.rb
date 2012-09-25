@@ -2,7 +2,20 @@ Catarse::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations", :passwords => "passwords"} do
     get "/login" => "devise/sessions#new"
   end
-
+  
+  # config/routes.rb Facebook Channel File
+  get '/channel.html' => proc {
+    [
+      200,
+      {
+        'Pragma'        => 'public',
+        'Cache-Control' => "max-age=#{1.year.to_i}",
+        'Expires'       => 1.year.from_now.to_s(:rfc822),
+        'Content-Type'  => 'text/html'
+      },
+      ['<script type="text/javascript" src="//connect.facebook.net/en_US/all.js"></script>']
+    ]
+  }
   # Non production routes
   if Rails.env == "test"
     match "/fake_login" => "sessions#fake_create", :as => :fake_login
