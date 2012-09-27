@@ -315,20 +315,20 @@ en:
       title: "Thank you"
   project:
     start:
-      email_subject: "Your project is being new by Researchable's Team"
+      email_subject: "Your project is being reviewed by Researchable's team"
       email_text: "Thanks for submitting your project to Researchable<br><br>We know that you expect a quick reply but, it could take up to 4 days to resnpond. That's because we have a small team working on several projects.<br><br>Meanwhile explore some projects online (<a href='%{explore_link}' style='color: #E75297 !important;'>%{explore_link}</a>) and - if you like any of them- contribute!<br><br>You may get some inspiration for your own project...<br><br>Stay tuned for updates on <a href='%{facebook}' style='color: #E75297 !important;'>Facebook</a> and get some deeper knowledge about Researchable reading the posts in our <a href='%{blog}' style='color: #E75297 !important;'>blog</a>.<br><br>If you have any questions, send an email to: %{email}"
       notification_text: "Your project has been received by Researchable's team"
     finish:
       successful:
         email_subject: "Congratulations! The project %{project_name} was successful on Researchable!"
-        email_text: "The project %{project_link}, that you have funded, was successfully funded! Let's celebrate o/<br><br>The project has, including you, %{project_total_backers} funders, raised %{project_pleged} and reached %{project_process}% of its goal =D<br><br>Something important to know: Researchable's team takes 3 days to send to the project creator the list with all information of the funders. So, the project creator will only be in touch with you to thank you and talk about the rewards delivery in a few days.<br><br>In this meantine, share with all your friends this sucess<br><br><div style='text-align:center;'>%{facebook_button}%{twitter_button}</div><br><br>If you want to get in touch with %{project_owner_name}, send an email to %{project_owner_email}.<br><br>If you have any other questions about Researchable, acess our FAQ: <a href='http://researchable.info/faq' style='color: #008800';>researchable.info/faq</a> or send an email to <a href='mail_to:admin@researchable.info' style='color: #008800;'>admin@researchable.info</a><br>"
+        email_text: "The project %{project_link}, that you have funded, was successfully funded! Let's celebrate o/<br><br>The project has, including you, %{project_total_backers} funders, raised %{project_pleged} and reached %{project_process}% of its goal =D<br><br>Something important to know: Researchable's team takes 3 days to send to the project creator the list with all information of the funders. So, the project creator will only be in touch with you to thank you and talk about the rewards delivery in a few days.<br><br>In this meantine, share with all your friends this sucess<br><br><div style='text-align:center;'>%{facebook_button}%{twitter_button}</div><br><br>If you want to get in touch with %{project_owner_name}, send an email to %{project_owner_email}.<br><br>If you have any other questions about Researchable, acess our FAQ: <a href='http://researchable.info/faq' style='color: #008800';>researchable.info/faq</a> or send an email to <a href='mail_to:admin@researchable.info' style='color: #008800;'>support@researchable.info</a><br>"
         facebook_text: "Awesome! The project '%{name}' I funded was successful on Researchable!"
         notification_text: "Awesome! The project %{link} that you funded was successful! Spread the word!"
         reward_notification_text: "Soon, %{link} will contact you to deliver your reward. Enjoy!"
         twitter_text: "Awesome! The project '%{name}' I funded was successful on @Researchable_! %{short_url}"
       unsuccessful:
         email_subject: "The project %{project_name} wasn't successful on Researchable."
-        email_text: 'Unfortunately the project %{project_link}, that you have funded, did not reached its goal and was not funded at Researchable.<br><br>So, you have received <strong>%{value}</strong> in credits to fund other projects. You can find other %{project_category} projects in %{explore_category_link}.<br><br>You also can ask for your refund by clicking %{credits_link}. Remember that you signed up on Researchable using a %{user_provider}. If you have some difficulty in this process, feel free to send an email to admin@researchable.info with the subject "Refund - login issue".<br><br>If, for any reason, you want to contact %{project_owner_name}, send an email to %{project_owner_email}.<br><br>If you have any other questions, access our FAQ or send an email to <a href="mail_to:admin@researchable.info" style="color: #008800;">admin@researchable.info</a>.<br>'
+        email_text: 'Unfortunately the project %{project_link}, that you have funded, did not reached its goal and was not funded on Researchable.<br><br>So, you have received <strong>%{value}</strong> in credits to fund other projects. You can find other %{project_category} projects in %{explore_category_link}.<br><br>You also can ask for your refund by clicking %{credits_link}. Remember that you signed up on Researchable using %{user_provider}. If you have some difficulty in this process, feel free to send an email to <a href="mail_to:support@researchable.info" style="color: #008800;">support@researchable.info</a> with the subject "Refund - login issue".<br><br>If, for any reason, you want to contact %{project_owner_name}, send an email to %{project_owner_email}.<br><br>If you have any other questions, access our FAQ: <a href="http://researchable.info/faq" style="color: #008800";>researchable.info/faq</a> or send an email to <a href="mail_to:support@researchable.info" style="color: #008800;">support@researchable.info</a>.<br>'
         notification_text: "You received %{value} in credits to fund other projects. If you prefer, you can request a refund %{link}."
         unsuccessful_text: "The project %{link} that you supported wasn't sufficiently funded. Maybe next time!"
     verify_if_video_exists_on_vimeo: "must exist on Vimeo"
@@ -633,8 +633,8 @@ en:
       hello: Hi
       intro: "You are receiving this message because you signed up on Researchable"
       mailee: "Message delivered by Mailee.me"
-      salutation: "Big hugs,"
-      signature: "Researchable's Team"
+      salutation: "Thanks again,"
+      signature: "The Researchable's Team"
       unsubscribe: Unsubscribe
       unsubscribe_long: "If you don't want to receive these emails"
       weblink: "View on the web"

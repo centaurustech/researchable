@@ -166,7 +166,7 @@ class Project < ActiveRecord::Base
   end
 
   def finish!
-    return unless expired? 
+    return unless expired? and can_finish and not finished
     backers.confirmed.each do |backer|
       unless backer.can_refund or backer.notified_finish
         if successful?
