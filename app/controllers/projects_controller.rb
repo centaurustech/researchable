@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
   skip_before_filter :detect_locale, :only => [:backers]
   before_filter :can_update_on_the_spot?, :only => :update_attribute_on_the_spot
   before_filter :date_format_convert, :only => [:create]
-
+  
   def date_format_convert
     # TODO localize here and on the datepicker on project_form.js
     params["project"]["expires_at"] = Date.strptime(params["project"]["expires_at"], '%d/%m/%Y')
@@ -132,7 +132,6 @@ class ProjectsController < ApplicationController
       if !params[:permalink].present? and @project.permalink.present?
         return redirect_to project_by_slug_url(permalink: @project.permalink)
       end
-
       show!{
         @title = @project.name
         @rewards = @project.rewards.order(:minimum_value).all

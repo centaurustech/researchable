@@ -468,7 +468,7 @@ CREATE TABLE projects (
     expires_at timestamp without time zone NOT NULL,
     about text NOT NULL,
     headline text NOT NULL,
-    video_url text NOT NULL,
+    video_url text,
     image_url text,
     short_url text,
     created_at timestamp without time zone NOT NULL,
@@ -483,10 +483,12 @@ CREATE TABLE projects (
     successful boolean DEFAULT false,
     permalink character varying(255),
     flickr_url text,
+    photo text,
+    flickr_image text,
+    flickr_thumb text,
     CONSTRAINT projects_about_not_blank CHECK ((length(btrim(about)) > 0)),
     CONSTRAINT projects_headline_length_within CHECK (((length(headline) >= 1) AND (length(headline) <= 140))),
-    CONSTRAINT projects_headline_not_blank CHECK ((length(btrim(headline)) > 0)),
-    CONSTRAINT projects_video_url_not_blank CHECK ((length(btrim(video_url)) > 0))
+    CONSTRAINT projects_headline_not_blank CHECK ((length(btrim(headline)) > 0))
 );
 
 
@@ -1524,3 +1526,13 @@ INSERT INTO schema_migrations (version) VALUES ('20120816161341');
 INSERT INTO schema_migrations (version) VALUES ('20120828194453');
 
 INSERT INTO schema_migrations (version) VALUES ('20120925112402');
+
+INSERT INTO schema_migrations (version) VALUES ('20120925223358');
+
+INSERT INTO schema_migrations (version) VALUES ('20120926010748');
+
+INSERT INTO schema_migrations (version) VALUES ('20120926150928');
+
+INSERT INTO schema_migrations (version) VALUES ('20120926223511');
+
+INSERT INTO schema_migrations (version) VALUES ('20120926223643');

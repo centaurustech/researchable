@@ -1,12 +1,13 @@
 class ProjectsMailer < ActionMailer::Base
   include ERB::Util
 
-  def start_project_email(how_much_you_need, category, about, rewards, video, facebook,twitter, blog, links, know_us_via, contact, user, user_url)
+  def start_project_email(how_much_you_need, category, about, rewards, video, flickr, facebook, twitter, blog, links, know_us_via, contact, user, user_url)
     @how_much_you_need = h(how_much_you_need)
     @category = h(category)
     @about = h(about).gsub("\n", "<br>").html_safe
     @rewards = h(rewards).gsub("\n", "<br>").html_safe
     @video = h(video)
+    @flickr = h(flickr)
     @facebook = h(facebook)
     @twitter = h(twitter)
     @blog = h(blog)

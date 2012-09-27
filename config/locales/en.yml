@@ -242,8 +242,7 @@ en:
         goal: "Think hard about the amount you will ask for. It should be the minimum necessary for the project to happen. Nothing more, nothing less. If you ask too much, your chances of reaching the minimum will be lower; if you don't ask for enough, you won't be able to finish the project."
         headline: "Summarize your project in 140 characters. This sentence will be the first contact people will have with your project. Be creative, clear and direct."
         name: "What's the name of your project? Choose with care, because this will influence the chances of your project reaching the goal."
-        video_url: "Paste the URL from a Vimeo link. Don't have a video for your project? You can submit a flickr image below."
-        flickr_url: "Paste the URL from a Flickr link. Make sure that you have permisssion to use it, if it is not your own."
+        video_url: "If you have a video, paste the URL from a Vimeo link"
       reward:
         description: "Include a reward for funding your project. It could be as small as a copy of the final paper or as large as a trip the the field site."
         maximum_backers: "If your reward is limited, tell us the maximum number of people who can have it."
@@ -407,6 +406,7 @@ en:
       rewards_description: "We believe that the best way to gain contributors and build new partnerships is to offer access to the results of your project. Rewards can be as small as a copy of the final paper or as large as a trip to the field site. Spend some time devising creative rewards and people will be interested."
       rewards_title: Rewards
       submit: "Submit project"
+      photo: "Image"
     index_header:
       subtitle_html: "Fund projects collaboratively and become part of something greater.<br/> Take control over your projects and direct the networks of academic research."
       title: "Support the World's Research"
@@ -493,10 +493,10 @@ en:
       contact: "Tell us the Paypal email where you'd like to receive your funds"
       links: "Where can we find more about you and your project?"
       links_hint: "Leave us as many links as you have, so we can get to know your work and your project better. Doesn't have to be something formal or fancy, just a few useful links."
-      video: "Does your project already have a video?"
-      video_hint: "If so, include a link to the video on Vimeo. If not, you can use a collection of photos to compile into a montage described on our guide linked above or post a link to a flickr image below."
+      video: "Does your project have a video?"
+      video_hint: "If so, include a link to the video on Vimeo. If not, you can always use a photo to convey a sense of your project"
       flickr: "No Video? You can include a link to an image on flickr"
-      flickr_hint: "Enter the flickr url of the photo you'd like to include as the project's image."
+      flickr_hint: "Enter the flickr url of the photo you'd like to include as the project's image. Ww use flick so you always own your own work and can change it at any time."
       twitter: "Do you have a twitter account?"
       facebook: "Do you have a facebook account?"
       blog: "Done you have a blog about the project?"

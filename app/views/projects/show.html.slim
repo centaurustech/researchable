@@ -74,10 +74,10 @@
         #project_about.content
           .midia
             .video
-              - if @project.video_url
-                  iframe src="#{@project.vimeo.embed_url}?title=0&amp;byline=0&amp;portrait=0&amp" width="640" height="430" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen
+              - if @project.video_url.empty?
+                  .image= image_tag @project.flickr_image, :width => "640"
               - else 
-                  .image= image_tag @project.image_url
+                  iframe src="#{@project.vimeo.embed_url}?title=0&amp;byline=0&amp;portrait=0&amp" width="640" height="430" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen
             .social
               #project_share
                 #facebook_share= render 'facebook'

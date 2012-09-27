@@ -6,7 +6,7 @@ class Project < ActiveRecord::Base
   include ActionView::Helpers::UrlHelper
   include ERB::Util
   include Rails.application.routes.url_helpers
-
+  
   belongs_to :user
   belongs_to :category
   has_many :projects_curated_pages
@@ -19,7 +19,7 @@ class Project < ActiveRecord::Base
   has_and_belongs_to_many :managers, :join_table => "projects_managers", :class_name => 'User'
   accepts_nested_attributes_for :rewards
   has_vimeo_video :video_url, :message => I18n.t('project.vimeo_regex_validation')
-
+    
   auto_html_for :about do
     html_escape :map => {
       '&' => '&amp;',
@@ -59,7 +59,6 @@ class Project < ActiveRecord::Base
   }
 
   search_methods :visible, :recommended, :expired, :not_expired, :expiring, :not_expiring, :recent, :successful
-
   validates_presence_of :name, :user, :category, :about, :headline, :goal, :expires_at
   validates_length_of :headline, :maximum => 140
   validates_uniqueness_of :permalink, :allow_blank => true, :allow_nil => true
@@ -75,7 +74,6 @@ class Project < ActiveRecord::Base
   end
 
   def display_image
-    return flickr_url if flickr_url
     return image_url if image_url
     return "user.png" unless vimeo.thumbnail
     vimeo.thumbnail
@@ -260,5 +258,16 @@ class Project < ActiveRecord::Base
       in_time: in_time?
     }
   end
+  
+  after_create :flickrimages
+
+    private
+      def flickrimages
+        flickr_id = self.flickr_url
+        flickr_image = FlickRaw.url_z(flickr.photos.getInfo(:photo_id => flickr_id))
+        flickr_thumb = FlickRaw.url_m(flickr.photos.getInfo(:photo_id => flickr_id))
+        self.update_attributes(:flickr_image => flickr_image)
+        self.update_attributes(:flickr_thumb => flickr_thumb)
+      end
 
 end

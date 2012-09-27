@@ -1,4 +1,4 @@
-o: ActiveSupport::Cache::Entry	:@compressedF:@expires_in0:@created_atf1348587460.859342:@value"æ[I"ØCATARSE.ProjectsNewView = Backbone.View.extend({
+o: ActiveSupport::Cache::Entry	:@compressedF:@expires_in0:@created_atf1348665088.189291:@value"æ[I"ØCATARSE.ProjectsNewView = Backbone.View.extend({
   initialize: function() {
     $('#add_reward').click(function(e){
       e.preventDefault()

@@ -76,10 +76,6 @@ GEM
       redcarpet
       rinku
       tag_helper
-    aws-s3 (0.6.3)
-      builder
-      mime-types
-      xml-simple
     bcrypt-ruby (3.0.1)
     bourbon (2.1.1)
       sass (>= 3.1)
@@ -109,7 +105,6 @@ GEM
     childprocess (0.3.5)
       ffi (~> 1.0, >= 1.0.6)
     chunky_png (1.2.6)
-    cocaine (0.3.1)
     coffee-rails (3.2.2)
       coffee-script (>= 2.2.0)
       railties (~> 3.2.0)
@@ -165,6 +160,7 @@ GEM
       rdoc (~> 3.8)
       sax-machine (~> 0.0.20)
     ffi (1.1.4)
+    flickraw (0.9.6)
     fog (0.9.0)
       builder
       excon (~> 0.6.1)
@@ -264,9 +260,6 @@ GEM
       rack
     omniauth-facebook (1.2.0)
       omniauth-oauth2 (~> 1.0.0)
-    omniauth-github (1.0.1)
-      omniauth (~> 1.0)
-      omniauth-oauth2 (~> 1.0)
     omniauth-linkedin (0.0.6)
       omniauth-oauth (~> 1.0.0)
     omniauth-oauth (1.0.1)
@@ -286,12 +279,6 @@ GEM
     on_the_spot (1.0.1)
       json_pure (>= 1.4.6)
     orm_adapter (0.0.7)
-    paperclip (3.2.0)
-      activemodel (>= 3.0.0)
-      activerecord (>= 3.0.0)
-      activesupport (>= 3.0.0)
-      cocaine (>= 0.0.2)
-      mime-types
     paypal-express (0.5.0)
       activesupport (>= 2.3)
       attr_required (>= 0.0.5)
@@ -451,7 +438,6 @@ GEM
       trollop (~> 1.16.2)
     weekdays (1.0.2)
     wirble (0.1.3)
-    xml-simple (1.1.1)
     xpath (0.1.4)
       nokogiri (~> 1.3)
 
@@ -466,7 +452,6 @@ DEPENDENCIES
   airbrake
   annotate
   auto_html (= 1.4.2)
-  aws-s3
   bourbon
   brcep
   cancan
@@ -485,6 +470,7 @@ DEPENDENCIES
   enumerate_it
   factory_girl_rails (= 1.7.0)
   feedzirra
+  flickraw
   fog
   foreigner
   formtastic (~> 2.1.1)
@@ -504,13 +490,11 @@ DEPENDENCIES
   moip_catarse (~> 1.0.6)
   omniauth (~> 1.1.0)
   omniauth-facebook (~> 1.2.0)
-  omniauth-github (~> 1.0.1)
   omniauth-linkedin (~> 0.0.6)
   omniauth-openid (~> 1.0.1)
   omniauth-twitter (~> 0.0.12)
   omniauth-yahoo (~> 0.0.4)
   on_the_spot
-  paperclip
   paypal-express
   pg
   rack-timeout
