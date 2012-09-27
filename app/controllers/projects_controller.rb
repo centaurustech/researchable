@@ -74,6 +74,7 @@ class ProjectsController < ApplicationController
       params[:about],
       params[:rewards],
       params[:video],
+      params[:flickr],
       params[:facebook],
       params[:twitter],
       params[:blog],
