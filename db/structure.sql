@@ -486,6 +486,7 @@ CREATE TABLE projects (
     photo text,
     flickr_image text,
     flickr_thumb text,
+    flickr_square text,
     CONSTRAINT projects_about_not_blank CHECK ((length(btrim(about)) > 0)),
     CONSTRAINT projects_headline_length_within CHECK (((length(headline) >= 1) AND (length(headline) <= 140))),
     CONSTRAINT projects_headline_not_blank CHECK ((length(btrim(headline)) > 0))
@@ -1536,3 +1537,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120926150928');
 INSERT INTO schema_migrations (version) VALUES ('20120926223511');
 
 INSERT INTO schema_migrations (version) VALUES ('20120926223643');
+
+INSERT INTO schema_migrations (version) VALUES ('20120927023918');

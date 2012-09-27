@@ -262,12 +262,19 @@ class Project < ActiveRecord::Base
   after_create :flickrimages
 
     private
-      def flickrimages
-        flickr_id = self.flickr_url
-        flickr_image = FlickRaw.url_z(flickr.photos.getInfo(:photo_id => flickr_id))
-        flickr_thumb = FlickRaw.url_m(flickr.photos.getInfo(:photo_id => flickr_id))
-        self.update_attributes(:flickr_image => flickr_image)
-        self.update_attributes(:flickr_thumb => flickr_thumb)
+      def flickrimages 
+        unless self.flickr_url.blank?
+          flickr_id = self.flickr_url
+          flickr_image = FlickRaw.url_z(flickr.photos.getInfo(:photo_id => flickr_id))
+          flickr_thumb = FlickRaw.url_m(flickr.photos.getInfo(:photo_id => flickr_id))
+          flickr_square = FlickRaw.url_q(flickr.photos.getInfo(:photo_id => flickr_id))
+          self.update_attributes(:flickr_image => flickr_image)
+          self.update_attributes(:flickr_thumb => flickr_thumb)
+          self.update_attributes(:flickr_square => flickr_square)
+        end
+        if self.image_url.blank?
+          self.update_attributes(:image_url => flickr_image)
+        end
       end
 
 end

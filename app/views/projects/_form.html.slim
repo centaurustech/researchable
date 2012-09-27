@@ -13,8 +13,14 @@
       span.add-on= "#{t('site.base_url')}/"
       = form.text_field :permalink, :class => 'permalink'
     = form.input :name, :as => :string
-    = form.input :video_url, :as => :string
+    .reward_title
+      h3= t('.project_media')
+      p= t('.project_media_description')
     = form.input :flickr_url, :as => :string
+    = form.input :video_url, :as => :string
+    .reward_title
+      h3= t('.project_description')
+      p= t('.project_about_description')
     = form.input :about
     = form.input :headline, :input_html => { :maxlength => 140 }
     = form.input :category, :collection => Category.all(:order => :name)

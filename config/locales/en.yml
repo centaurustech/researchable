@@ -399,12 +399,16 @@ en:
       success: "Your project was successfully created! We'll soon contact you. Thanks a lot!"
     form:
       add_reward: "Add reward"
-      important_html: "Please notice that Researchable will charge 5% if your project is successful, and Paypal charges a fee that varies, usually, from 4% to 5% per transaction. Add this values to your budget in order to execute your project with no surprises."
+      important_html: "Please notice that Researchable will charge 5% if your project is successful, and Paypal charges a fee that varies, usually, from free to 5% per transaction. Add this values to your budget in order to execute your project with no surprises."
       project_warning:
         content_html: "Want to have your project selected? Don't forget to read %{link}."
         help_link: "our guide"
       rewards_description: "We believe that the best way to gain contributors and build new partnerships is to offer access to the results of your project. Rewards can be as small as a copy of the final paper or as large as a trip to the field site. Spend some time devising creative rewards and people will be interested."
       rewards_title: Rewards
+      project_media: "Project Media"
+      project_description: "Project Description"
+      project_media_description: "Please either enter a link to a vimeo video or the id for a flick image. For example, the id number for the flicker url 'http://www.flickr.com/photos/blezsp/8023540504/' is 8023540504."
+      project_about_description: "Tell the world about your project and why they should support your work. Take as much space as you need but remember that brevity is key."
       submit: "Submit project"
       photo: "Image"
     index_header:
