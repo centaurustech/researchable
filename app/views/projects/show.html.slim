@@ -8,7 +8,6 @@
   - if @project.video_url.empty?
       meta property="og:type" content='website'
       meta property="og:image" content=@project.display_image
-      meta property="og:title" content=@project.name
   - else
       meta property="og:type" content="video.movie"
       meta property="og:image" content=@project.display_image
@@ -16,7 +15,6 @@
       meta property="og:video:width" content="420"
       meta property="og:video:height" content="260"
       meta property="og:video:type" content="application/x-shockwave-flash"
-      meta property="og:title" content=@project.name
   meta property="og:url" content="#{request.url + (defined?(anchor) ? ("#" + anchor) : "")}"
   meta property="og:site_name" content=t('site.name')
   meta property="og:description" content=@project.headline
