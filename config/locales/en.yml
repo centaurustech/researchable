@@ -583,7 +583,7 @@ en:
     show:
       attention: Attention
       tabs:
-        backed_projects: "People Supported"
+        backed_projects: "Projects Supported"
         created_projects: "Projects Created"
         comments: Comments
         credits: Credits
