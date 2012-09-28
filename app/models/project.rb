@@ -65,6 +65,20 @@ class Project < ActiveRecord::Base
   validates_format_of :permalink, with: /^(\w|-)*$/, :allow_blank => true, :allow_nil => true
   before_create :store_image_url
   
+  validate :media_present?
+  def media_present?
+    if video_url.blank? and flickr_url.blank?
+     #one at least must be filled in, add a custom error message
+     return false
+    elsif !video_url.blank? and !flickr_url.blank?
+     #both can't be filled in, add custom error message
+     return false
+    else
+     return true
+    end
+  end
+  
+  
   def store_image_url
     self.image_url = vimeo.thumbnail unless self.image_url
   end

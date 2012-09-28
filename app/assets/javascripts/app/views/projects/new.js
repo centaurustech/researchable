@@ -15,13 +15,19 @@ CATARSE.ProjectsNewView = Backbone.View.extend({
       rewards_count++
       rewards_id++
     })
+    $('#project_submit').attr('disabled', true)
     var video_valid = null
     var permalink_valid = null
+    var flickr_valid = null
     everything_ok = function(){
       var all_ok = true
       if(video_valid == null) {
         all_ok = false
         verify_video()
+      }
+      if(flickr_valid == null) {
+        all_ok = false
+        verify_flickr()
       }
       if(permalink_valid == null) {
         all_ok = false
@@ -30,6 +36,8 @@ CATARSE.ProjectsNewView = Backbone.View.extend({
       if(!permalink_ok())
         all_ok = false
       if(!ok('#project_name'))
+        all_ok = false
+	  if(!flickr_ok())
         all_ok = false
       if(!video_ok())
         all_ok = false
@@ -87,7 +95,26 @@ CATARSE.ProjectsNewView = Backbone.View.extend({
         everything_ok()
       }
     }
-
+    verify_flickr = function() {
+	  if(/flickr.com\/photos\/[^\/]+\/([0-9]+)/.test($('#project_flickr_url').val()))
+	    {
+	       flickr_valid = true
+	       } else {
+	       flickr_valid = false
+	       }
+        everything_ok()
+    }
+      
+    flickr_ok = function(){
+	  if(flickr_valid){
+		$('#project_flickr_url').addClass("ok").removeClass("error")
+        return true
+      } else {
+        $('#project_flickr_url').addClass("error").removeClass("ok")
+        return false  	
+	  }
+	}
+	
     permalink_ok = function(){
       if(permalink_valid){
         $('#project_permalink').addClass("ok").removeClass("error")
@@ -104,7 +131,7 @@ CATARSE.ProjectsNewView = Backbone.View.extend({
         $('#project_video_url').removeClass("ok").removeClass("error").addClass('loading')
         $.get('/projects/vimeo/?url='+$('#project_video_url').val(), function(r){
           $('#project_video_url').removeClass("loading")
-          if(r.id==false){
+          if(r.id==false) {
             video_valid = true
           } else {
             video_valid = true
@@ -117,8 +144,8 @@ CATARSE.ProjectsNewView = Backbone.View.extend({
     video_ok = function(){
       if(video_valid){
         $('#project_video_url').addClass("ok").removeClass("error")
-        return true
-      } else {
+        return true	
+	  } else {
         if(!$('#project_video_url').hasClass('loading'))
           $('#project_video_url').addClass("error").removeClass("ok")
         return true
@@ -204,6 +231,8 @@ CATARSE.ProjectsNewView = Backbone.View.extend({
     $('#project_name').keyup(everything_ok)
     $('#project_video_url').keyup(function(){ video_valid = false; everything_ok() })
     $('#project_video_url').timedKeyup(verify_video)
+    $('#project_flickr_url').keyup(function(){ flickr_valid = false; everything_ok() })
+    $('#project_flickr_url').timedKeyup(verify_flickr)
     $('#project_about').keyup(everything_ok)
     $('#project_category_id').change(everything_ok)
     $('#project_goal').keyup(everything_ok)

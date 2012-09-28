@@ -13,13 +13,13 @@
         #more_tips.hide= render 'more_tips'
         = render 'guidelines_text'
       .bootstrap-form.center_form
-        = form_tag(start_projects_path, :method => :get, :id => 'guidelines_form') do
+        = form_tag(new_project_path, :method => :get, :id => 'guidelines_form') do
           fieldset.check
             = check_box_tag 'accept'
             = label_tag 'accept', t('.accept')
           fieldset
             .bootstrap-twitter
-              = submit_tag t('.submit'), :disabled => true, :class=>'btn', :style=>'display:none'
+              = submit_tag t('.submit'), :disabled => true, :class=>'btn', :style=>'display:none', :action=> 'new'
             .submit_loader
               = image_tag('loading.gif')
     .clearfix

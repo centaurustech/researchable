@@ -1,0 +1,6 @@
+Connecting to database specified by database.yml
+Error while setting omniauth providers: #<PG::Error: FATAL:  role "catarse" does not exist
+>
+Connecting to database specified by database.yml
+Error while setting omniauth providers: #<PG::Error: FATAL:  role "catarse" does not exist
+>
