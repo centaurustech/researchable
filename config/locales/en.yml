@@ -477,7 +477,7 @@ en:
       success: "Your project was successfully sent! We'll soon contact you. Thanks a lot!"
     show:
       rejected: "This project was not selected to participate on Researchable. Maybe next time!"
-      waiting: "This project is waiting for approval and soon we'll know if it will go online on Researchable."
+      waiting: "Congratulations. You project is now on Researchable. Go share it."
       about_title: "About"
       menu:
         about: About

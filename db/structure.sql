@@ -476,7 +476,7 @@ CREATE TABLE projects (
     can_finish boolean DEFAULT false,
     finished boolean DEFAULT false,
     about_html text,
-    visible boolean DEFAULT false,
+    visible boolean DEFAULT true,
     rejected boolean DEFAULT false,
     recommended boolean DEFAULT false,
     home_page_comment text,
@@ -1545,3 +1545,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120927023918');
 INSERT INTO schema_migrations (version) VALUES ('20120929123134');
 
 INSERT INTO schema_migrations (version) VALUES ('20120929133832');
+
+INSERT INTO schema_migrations (version) VALUES ('20120929145351');
