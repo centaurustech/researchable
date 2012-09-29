@@ -19,6 +19,8 @@ CATARSE.ProjectsNewView = Backbone.View.extend({
     var video_valid = null
     var permalink_valid = null
     var flickr_valid = null
+    var academic_email_valid = null
+    var paypal_email_valid = null
     everything_ok = function(){
       var all_ok = true
       if(video_valid == null) {
@@ -33,11 +35,23 @@ CATARSE.ProjectsNewView = Backbone.View.extend({
         all_ok = false
         verify_permalink()
       }
+      if(academic_email_valid == null) {
+        all_ok = false
+        verify_academic_email()
+      }
+	  if(paypal_email_valid == null) {
+        all_ok = false
+        verify_paypal_email()
+      }
       if(!permalink_ok())
         all_ok = false
       if(!ok('#project_name'))
         all_ok = false
-	  if(!flickr_ok())
+      if(!flickr_ok())
+	    all_ok = false
+	  if(!paypal_email_ok())
+		all_ok = false
+	  if(!academic_email_ok())
         all_ok = false
       if(!video_ok())
         all_ok = false
@@ -95,6 +109,44 @@ CATARSE.ProjectsNewView = Backbone.View.extend({
         everything_ok()
       }
     }
+    verify_academic_email = function() {
+	  if(/^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+(edu))$/.test($('#project_academic_email').val()))
+	    {
+	       academic_email_valid = true
+	       } else {
+	       academic_email_valid = false
+	       }
+        everything_ok()
+    }
+      
+    academic_email_ok = function(){
+	  if(academic_email_valid){
+		$('#project_academic_email').addClass("ok").removeClass("error")
+        return true
+      } else {
+        $('#project_academic_email').addClass("error").removeClass("ok")
+        return false  	
+	  }
+	}
+    verify_paypal_email = function() {
+	  if(/^([a-zA-Z0-9_.-])+@([a-zA-Z0-9_.-])+\.([a-zA-Z])+([a-zA-Z])+/.test($('#project_paypal_email').val()))
+	    {
+	       paypal_email_valid = true
+	       } else {
+	       paypal_email_valid = false
+	       }
+        everything_ok()
+    }
+      
+    paypal_email_ok = function(){
+	  if(paypal_email_valid){
+		$('#project_paypal_email').addClass("ok").removeClass("error")
+        return true
+      } else {
+        $('#project_paypal_email').addClass("error").removeClass("ok")
+        return false  	
+	  }
+	}
     verify_flickr = function() {
 	  if(/flickr.com\/photos\/[^\/]+\/([0-9]+)/.test($('#project_flickr_url').val()))
 	    {
@@ -233,6 +285,10 @@ CATARSE.ProjectsNewView = Backbone.View.extend({
     $('#project_video_url').timedKeyup(verify_video)
     $('#project_flickr_url').keyup(function(){ flickr_valid = false; everything_ok() })
     $('#project_flickr_url').timedKeyup(verify_flickr)
+    $('#project_academic_email').keyup(function(){ academic_email_valid = false; everything_ok() })
+    $('#project_academic_email').timedKeyup(verify_academic_email)
+    $('#project_paypal_email').keyup(function(){ paypal_email_valid = false; everything_ok() })
+    $('#project_paypal_email').timedKeyup(verify_paypal_email)
     $('#project_about').keyup(everything_ok)
     $('#project_category_id').change(everything_ok)
     $('#project_goal').keyup(everything_ok)

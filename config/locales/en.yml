@@ -81,6 +81,8 @@ en:
         expires_at: Deadline
         headline: Headline
         image_url: "Image URL"
+        academic_email: "Academic Email Address (.edu)"
+        paypal_email: "Paypal Email to Recieve Funding"
         name: Name
         user_id: "User Id"
         video_url: "Video URL"
@@ -401,7 +403,7 @@ en:
       add_reward: "Add reward"
       important_html: "Please notice that Researchable will charge 5% if your project is successful, and Paypal charges a fee that varies, usually, from free to 5% per transaction. Add this values to your budget in order to execute your project with no surprises."
       project_warning:
-        content_html: "Want to have your project selected? Don't forget to read %{link}."
+        content_html: "Want to have your project featured on the home page? Don't forget to read %{link}."
         help_link: "our guide"
       rewards_description: "We believe that the best way to gain contributors and build new partnerships is to offer access to the results of your project. Rewards can be as small as a copy of the final paper or as large as a trip to the field site. Spend some time devising creative rewards and people will be interested."
       rewards_title: Rewards

@@ -13,6 +13,7 @@
       span.add-on= "#{t('site.base_url')}/"
       = form.text_field :permalink, :class => 'permalink'
     = form.input :name, :as => :string
+    = form.input :academic_email, :as => :string
     .reward_title
       h3= t('.project_media')
       p= t('.project_media_description')
@@ -28,6 +29,7 @@
     .bootstrap-alert
       .alert
         .important= t('.important_html')
+    = form.input :paypal_email, :as => :string
     = form.input :expires_at, :as => :string
     #project_rewards
       javascript:

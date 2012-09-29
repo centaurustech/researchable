@@ -59,7 +59,7 @@ class Project < ActiveRecord::Base
   }
 
   search_methods :visible, :recommended, :expired, :not_expired, :expiring, :not_expiring, :recent, :successful
-  validates_presence_of :name, :user, :category, :about, :headline, :goal, :expires_at
+  validates_presence_of :name, :user, :category, :about, :headline, :goal, :expires_at, :academic_email, :paypal_email
   validates_length_of :headline, :maximum => 140
   validates_uniqueness_of :permalink, :allow_blank => true, :allow_nil => true
   validates_format_of :permalink, with: /^(\w|-)*$/, :allow_blank => true, :allow_nil => true
