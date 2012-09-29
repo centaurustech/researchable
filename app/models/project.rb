@@ -278,7 +278,10 @@ class Project < ActiveRecord::Base
     private
       def flickrimages 
         unless self.flickr_url.blank?
-          flickr_id = self.flickr_url
+          line = self.flickr_url
+          regex = Regexp.new('photos\/[^\/]+\/([0-9]+)')
+          tmp = line.scan(regex)
+          flickr_id = tmp.join
           flickr_image = FlickRaw.url_z(flickr.photos.getInfo(:photo_id => flickr_id))
           flickr_thumb = FlickRaw.url_m(flickr.photos.getInfo(:photo_id => flickr_id))
           flickr_square = FlickRaw.url_q(flickr.photos.getInfo(:photo_id => flickr_id))
