@@ -25,7 +25,7 @@ gem 'slim-rails'
 # Authentication and Authorization
 gem 'omniauth', "~> 1.1.0"
 gem 'omniauth-openid', '~> 1.0.1'
-gem 'omniauth-twitter', :git => 'https://github.com/arunagw/omniauth-twitter.git'
+gem 'omniauth-twitter'
 gem 'omniauth-facebook', '~> 1.2.0'
 gem 'omniauth-linkedin'
 gem 'omniauth-yahoo', '~> 0.0.4'
