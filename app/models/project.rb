@@ -273,7 +273,7 @@ class Project < ActiveRecord::Base
     }
   end
   
-  after_create :flickrimages, :notify_admin
+  after_create :flickrimages
     private
       def flickrimages 
         unless self.flickr_url.blank?
