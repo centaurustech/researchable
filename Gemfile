@@ -35,6 +35,7 @@ gem 'cancan'
 
 # Error reporting
 gem "airbrake"
+gem 'newrelic_rpm'
 
 # Email marketing
 #gem 'mailchimp'
