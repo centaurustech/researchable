@@ -150,6 +150,8 @@ en:
     request_refund_from:
       subject: "Refund request by %{name}"
       subject_html: "User %{name} requested refund for contribution %{backer_key} to the project %{backer_project} in the amount of %{backer_value} made by %{backer_payment_service} gateway."
+  new_project_mailer_subject: "New Project Posted by %{user}!"
+  new_project_body: "New Project Posted by %{user} called %{name}. Check it out at %{link}."
   curated_pages:
     index:
       title: "Curated pages"
@@ -244,6 +246,7 @@ en:
         goal: "Think hard about the amount you will ask for. It should be the minimum necessary for the project to happen. Nothing more, nothing less. If you ask too much, your chances of reaching the minimum will be lower; if you don't ask for enough, you won't be able to finish the project."
         headline: "Summarize your project in 140 characters. This sentence will be the first contact people will have with your project. Be creative, clear and direct."
         name: "What's the name of your project? Choose with care, because this will influence the chances of your project reaching the goal."
+        academic_email: "Enter your university email. Make sure it's correct! This is where we'll be sending your money to."
         video_url: "If you have a video, paste the URL from a Vimeo link"
       reward:
         description: "Include a reward for funding your project. It could be as small as a copy of the final paper or as large as a trip the the field site."
@@ -409,7 +412,7 @@ en:
       rewards_title: Rewards
       project_media: "Project Media"
       project_description: "Project Description"
-      project_media_description: "Please either enter a link to a vimeo video or the id for a flick image. For example, the id number for the flicker url 'http://www.flickr.com/photos/blezsp/8023540504/' is 8023540504."
+      project_media_description: "Please either enter a URL to a vimeo video or a flickr image. For example, a flicker url could be 'http://www.flickr.com/photos/blezsp/8023540504/' and a vimeo url could be 'http://vimeo.com/33480080'." 
       project_about_description: "Tell the world about your project and why they should support your work. Take as much space as you need but remember that brevity is key."
       submit: "Submit project"
       photo: "Image"

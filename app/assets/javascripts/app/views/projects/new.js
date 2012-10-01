@@ -20,7 +20,6 @@ CATARSE.ProjectsNewView = Backbone.View.extend({
     var permalink_valid = null
     var flickr_valid = null
     var academic_email_valid = null
-    var paypal_email_valid = null
     everything_ok = function(){
       var all_ok = true
       if(video_valid == null) {
@@ -39,18 +38,12 @@ CATARSE.ProjectsNewView = Backbone.View.extend({
         all_ok = false
         verify_academic_email()
       }
-	  if(paypal_email_valid == null) {
-        all_ok = false
-        verify_paypal_email()
-      }
       if(!permalink_ok())
         all_ok = false
       if(!ok('#project_name'))
         all_ok = false
       if(!flickr_ok())
 	    all_ok = false
-	  if(!paypal_email_ok())
-		all_ok = false
 	  if(!academic_email_ok())
         all_ok = false
       if(!video_ok())
@@ -125,25 +118,6 @@ CATARSE.ProjectsNewView = Backbone.View.extend({
         return true
       } else {
         $('#project_academic_email').addClass("error").removeClass("ok")
-        return false  	
-	  }
-	}
-    verify_paypal_email = function() {
-	  if(/^([a-zA-Z0-9_.-])+@([a-zA-Z0-9_.-])+\.([a-zA-Z])+([a-zA-Z])+/.test($('#project_paypal_email').val()))
-	    {
-	       paypal_email_valid = true
-	       } else {
-	       paypal_email_valid = false
-	       }
-        everything_ok()
-    }
-      
-    paypal_email_ok = function(){
-	  if(paypal_email_valid){
-		$('#project_paypal_email').addClass("ok").removeClass("error")
-        return true
-      } else {
-        $('#project_paypal_email').addClass("error").removeClass("ok")
         return false  	
 	  }
 	}
@@ -287,8 +261,6 @@ CATARSE.ProjectsNewView = Backbone.View.extend({
     $('#project_flickr_url').timedKeyup(verify_flickr)
     $('#project_academic_email').keyup(function(){ academic_email_valid = false; everything_ok() })
     $('#project_academic_email').timedKeyup(verify_academic_email)
-    $('#project_paypal_email').keyup(function(){ paypal_email_valid = false; everything_ok() })
-    $('#project_paypal_email').timedKeyup(verify_paypal_email)
     $('#project_about').keyup(everything_ok)
     $('#project_category_id').change(everything_ok)
     $('#project_goal').keyup(everything_ok)

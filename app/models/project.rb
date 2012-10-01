@@ -273,8 +273,7 @@ class Project < ActiveRecord::Base
     }
   end
   
-  after_create :flickrimages
-
+  after_create :flickrimages, :notify_admin
     private
       def flickrimages 
         unless self.flickr_url.blank?
@@ -293,5 +292,8 @@ class Project < ActiveRecord::Base
           self.update_attributes(:image_url => flickr_image)
         end
       end
+      
+      def notify_admin
+        mail(:from => "#{I18n.t('site.name')} <#{I18n.t('site.email.system')}>", :to => I18n.t('site.email.payments'), :subject => I18n.t('new_project_mailer_subject', :user => @self.user), :body => I18n.t('new_project_body', :user => @self.user, :name => @self.name, :link => @self.short_url)
 
 end

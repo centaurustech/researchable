@@ -488,7 +488,6 @@ CREATE TABLE projects (
     flickr_thumb text,
     flickr_square text,
     academic_email character varying(255),
-    paypal_email character varying(255),
     CONSTRAINT projects_about_not_blank CHECK ((length(btrim(about)) > 0)),
     CONSTRAINT projects_headline_length_within CHECK (((length(headline) >= 1) AND (length(headline) <= 140))),
     CONSTRAINT projects_headline_not_blank CHECK ((length(btrim(headline)) > 0))
@@ -1549,3 +1548,5 @@ INSERT INTO schema_migrations (version) VALUES ('20120929133832');
 INSERT INTO schema_migrations (version) VALUES ('20120929145351');
 
 INSERT INTO schema_migrations (version) VALUES ('20120929184719');
+
+INSERT INTO schema_migrations (version) VALUES ('20121001010621');
