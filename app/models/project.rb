@@ -59,7 +59,7 @@ class Project < ActiveRecord::Base
   }
 
   search_methods :visible, :recommended, :expired, :not_expired, :expiring, :not_expiring, :recent, :successful
-  validates_presence_of :name, :user, :category, :about, :headline, :goal, :expires_at, :academic_email, :paypal_email
+  validates_presence_of :name, :user, :category, :about, :headline, :goal, :expires_at, :academic_email
   validates_length_of :headline, :maximum => 140
   validates_uniqueness_of :permalink, :allow_blank => true, :allow_nil => true
   validates_format_of :permalink, with: /^(\w|-)*$/, :allow_blank => true, :allow_nil => true
@@ -292,8 +292,5 @@ class Project < ActiveRecord::Base
           self.update_attributes(:image_url => flickr_image)
         end
       end
-      
-      def notify_admin
-        mail(:from => "#{I18n.t('site.name')} <#{I18n.t('site.email.system')}>", :to => I18n.t('site.email.payments'), :subject => I18n.t('new_project_mailer_subject', :user => @self.user), :body => I18n.t('new_project_body', :user => @self.user, :name => @self.name, :link => @self.short_url)
 
 end
