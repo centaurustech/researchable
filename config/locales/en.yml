@@ -333,7 +333,7 @@ en:
         twitter_text: "Awesome! The project '%{name}' I funded was successful on @Researchable_! %{short_url}"
       unsuccessful:
         email_subject: "The project %{project_name} wasn't successful on Researchable."
-        email_text: 'Unfortunately the project %{project_link}, that you have funded, did not reached its goal and was not funded on Researchable.<br><br>So, you have received <strong>%{value}</strong> in credits to fund other projects. You can find other %{project_category} projects in %{explore_category_link}.<br><br>You also can ask for your refund by clicking %{credits_link}. Remember that you signed up on Researchable using %{user_provider}. If you have some difficulty in this process, feel free to send an email to <a href="mail_to:support@researchable.info" style="color: #008800";>support@researchable.info</a> with the subject "Refund - login issue".<br><br>If, for any reason, you want to contact %{project_owner_name}, send an email to %{project_owner_email}.<br><br>If you have any other questions, access our FAQ: <a href="http://dev.researchable.info/faq" style="color: #008800";>dev.researchable.info/faq</a> or send an email to <a href="mail_to:support@researchable.info" style="color: #008800";>support@researchable.info</a>.<br>'
+        email_text: 'Unfortunately the project %{project_link}, that you have funded, did not reached its goal and was not funded on Researchable.<br><br>So, you have received <strong>%{value}</strong> in credits to fund other projects. You can find other %{project_category} projects in %{explore_category_link}.<br><br>You also can ask for your refund by clicking %{credits_link}. Remember that you signed up on Researchable using %{user_provider}. If you have some difficulty in this process, feel free to send an email to <a href="mail_to:support@researchable.info" style="color: #008800";>support@researchable.info</a> with the subject "Refund - login issue".<br><br>If, for any reason, you want to contact %{project_owner_name}, send an email to %{project_owner_email}.<br><br>If you have any other questions, access our FAQ: <a href="http://www.researchable.info/faq" style="color: #008800";>www.researchable.info/faq</a> or send an email to <a href="mail_to:support@researchable.info" style="color: #008800";>support@researchable.info</a>.<br>'
         notification_text: "You received %{value} in credits to fund other projects. If you prefer, you can request a refund %{link}."
         unsuccessful_text: "The project %{link} that you supported wasn't sufficiently funded. Maybe next time!"
     verify_if_video_exists_on_vimeo: "must exist on Vimeo"
@@ -417,7 +417,7 @@ en:
       submit: "Submit project"
       photo: "Image"
     index_header:
-      subtitle_html: "Fund projects collaboratively and become part of something greater.<br/> Take control over your projects and direct the networks of academia. Create one <a href='http://dev.researchable.info/projects/new' style='color: #0B87C9; text-decoration: none';>now</a>."
+      subtitle_html: "Fund projects collaboratively and become part of something greater.<br/> Take control over your projects and direct the networks of academia. Create one <a href='http://www.researchable.info/projects/new' style='color: #0B87C9; text-decoration: none';>now</a>."
       title: "Drive the World's Research"
     new:
       subtitle: "The time to make you project happen is now! We really want to know what you're up to..."
