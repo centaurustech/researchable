@@ -18,7 +18,7 @@ en:
   tell_about_this_back: "Tell the world about your contribution!"
   share_my_backs: "See projects I support in Researchable!"
   tell_about_this_project: "Tell the world about your project!"
-  share_my_projects: "See my projects in Researchable!"
+  share_my_projects: "See my project on Researchable!"
   count_backed_projects: "funded %{total} projects"
   footer:
     titles:
