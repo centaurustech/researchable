@@ -39,8 +39,7 @@ class User < ActiveRecord::Base
                   :locale,
                   :twitter,
                   :facebook_link,
-                  :other_link,
-                  :admin
+                  :other_link
 
   include ActionView::Helpers::NumberHelper
   include ActionView::Helpers::TextHelper
