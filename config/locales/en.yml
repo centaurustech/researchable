@@ -81,7 +81,7 @@ en:
         expires_at: Deadline
         headline: Headline
         image_url: "Image URL"
-        academic_email: "Academic Email Address"
+        academic_email: "Academic Email Address (US, UK, NZ & AU)"
         paypal_email: "Paypal Email to Recieve Funding"
         name: Name
         user_id: "User Id"

@@ -103,7 +103,7 @@ CATARSE.ProjectsNewView = Backbone.View.extend({
       }
     }
     verify_academic_email = function() {
-	  if(/^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+(edu|ac.co.uk))$/.test($('#project_academic_email').val()))
+	  if(/^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+(edu|ac.co.uk|edu.au|ac.nz))$/.test($('#project_academic_email').val()))
 	    {
 	       academic_email_valid = true
 	       } else {
