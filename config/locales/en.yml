@@ -420,8 +420,8 @@ en:
       subtitle_html: "Fund projects collaboratively and become part of something greater.<br/> Take control over your projects and direct the networks of academia. Create one <a href='http://www.researchable.info/projects/new' style='color: #0B87C9; text-decoration: none';>now</a>."
       title: "Drive the World's Research"
     new:
-      subtitle: "The time to make you project happen is now! We really want to know what you're up to..."
-      title: "Submit your project"
+      subtitle: "The time to make you project happen is now! Fill in the required details and it will be live immediately..."
+      title: "Post your project"
     pending:
       can_finish: "Can finish?"
       finished: Finished?
