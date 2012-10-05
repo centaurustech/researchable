@@ -1,19 +1,2 @@
 javascript:
-  var uservoiceOptions = {
-    key: 'researchable',
-    host: 'researchable.uservoice.com',
-    forum: '103171',
-    alignment: 'left',
-    background_color:'#0B87C9',
-    text_color: 'white',
-    hover_color: '#005580',
-    lang: 'en_GB',
-    showTab: true
-  };
-  function _loadUserVoice() {
-    var s = document.createElement('script');
-    s.src = ("https:" == document.location.protocol ? "https://" : "http://") + "cdn.uservoice.com/javascripts/widgets/tab.js";
-    document.getElementsByTagName('head')[0].appendChild(s);
-  }
-  _loadSuper = window.onload;
-  window.onload = (typeof window.onload != 'function') ? _loadUserVoice : function() { _loadSuper(); _loadUserVoice(); };
+  var uservoiceOptions={key:'researchable',host:'researchable.uservoice.com',forum:'103171',alignment:'left',background_color:'#0B87C9',text_color:'white',hover_color:'#005580',lang:'en_GB',showTab:true};function _loadUserVoice(){var s=document.createElement('script');s.src=("https:"==document.location.protocol?"https://":"http://")+"cdn.uservoice.com/javascripts/widgets/tab.js";document.getElementsByTagName('head')[0].appendChild(s)}_loadSuper=window.onload;window.onload=(typeof window.onload!='function')?_loadUserVoice:function(){_loadSuper();_loadUserVoice()};
