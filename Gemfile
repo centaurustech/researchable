@@ -54,7 +54,7 @@ gem 'kaminari'
 gem 'rails_autolink', '~> 1.0.7'
 
 # Uploads
-gem 'carrierwave', '~> 0.7.0'
+gem 'carrierwave', '= 0.5.8'
 gem 'rmagick'
 gem 'fog'
 gem 'flickraw'
