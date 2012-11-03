@@ -1,0 +1,23 @@
+- backer = @notification.backer
+|Hello, #{backer.user.name}!
+br
+br
+|Unfortunately, the project #{link_to(backer.project.name, "#{I18n.t('site.base_url')}/projects/#{backer.project.to_param}")} that you supported did not reach its target goal on Researchable.
+br
+br
+|As a result, you've received #{backer.display_value} in credits to contribute to other projects. You can find similar projects to #{backer.project.category.name} at #{link_to("#{I18n.t('site.base_url')}/explore##{backer.project.category.name.parameterize}", "#{I18n.t('site.base_url')}/explore##{backer.project.category.name.parameterize}")}
+br
+br
+|If you prefer, you can request a refund by clicking #{link_to("here", "#{I18n.t('site.base_url')}/users/#{backer.user.to_param}#credits")}. Remember that you registered for on the website using #{backer.user.display_provider}. If you have any difficulty logging in, send an email to #{mail_to "contact@researcable.info"} with the subject “Refund - Login Problem”.
+br
+br
+|If, for any reason, you wish to contact #{backer.project.user.display_name}, send an email to #{mail_to backer.project.user.email}.
+br
+br
+|If you have any other questions, please visit our #{link_to('FAQ',"#{I18n.t('site.base_url')}/faq")} or send an email to #{mail_to 'contact@researchable.info'}.
+br
+br
+|Thanks Again,
+br
+br
+|The Researchable Team

@@ -1,0 +1,38 @@
+- backer = @notification.backer
+|Hello, <strong>#{backer.user.display_name}</strong>!
+br
+br
+|Your support for #{link_to(backer.project.name, project_url(backer.project, host: I18n.t('site.host') ))} was confirmed through <strong>#{backer.payment_method}</strong>
+|!
+br
+br
+|Keep this record for proof of your support.
+br
+br
+|Value of your contribution: <strong>$ #{backer.value}</strong>
+br
+-if backer.reward
+  |Reward Selected: <strong>#{backer.reward.description}</strong>
+-else
+  |No reward was selected, please contact our team via #{mail_to 'contato@catarse.me'} with any questions
+br
+br
+|If the project reaches its target by <strong>#{backer.project.expires_at.strftime("%d/%m/%Y")}</strong>, the project's creator will contact you about the delivery of any of the rewards. This will usually take 1 week after that date, which is the time it takes to pass the information about al the supporters to them.
+br
+br
+|If the project does not reach its target, you will receive an email with instructions on how to:
+br
+|1) support other project with the money you already contributed, OR
+br
+|2) request a refund of your money.
+br
+br
+|If you want to contact #{backer.project.user.name}, send an email to #{mail_to backer.project.user.email}
+br
+br
+|If you have any other questions, please visit our #{link_to('FAQ', "#{I18n.t('site.base_url')}/faq")} or send us an email at #{mail_to 'contact@researchable.info'}
+br
+br
+|Thanks Again,
+br
+|The Researchable Team

@@ -54,9 +54,13 @@ class ProjectsController < ApplicationController
         @last_tweets ||= []
       end
       format.json do
+        @projects = if params[:search][:name_or_headline_or_about_or_user_name_or_user_address_city_contains]
+          Project.visible.unaccent_search( params[:search][:name_or_headline_or_about_or_user_name_or_user_address_city_contains])
+        else
+          Project.visible.search(params[:search])
+        end
         # After the search params we order by ID to avoid ties and therefore duplicate items in pagination
-        @projects = Project.visible.search(params[:search]).order('id').page(params[:page]).per(6)
-        respond_with(@projects)
+        respond_with(@projects.order('id').page(params[:page]).per(6))
       end
     end
   end
@@ -85,15 +89,7 @@ class ProjectsController < ApplicationController
       "#{I18n.t('site.base_url')}#{user_path(current_user)}").deliver
 
     # Send project receipt
-    notification_text = I18n.t('project.start.notification_text', :locale => current_user.locale)
-    email_subject = I18n.t('project.start.email_subject', :locale => current_user.locale)
-    email_text = I18n.t('project.start.email_text',
-                        :facebook => I18n.t('site.facebook', :locale => current_user.locale),
-                        :blog => I18n.t('site.blog', :locale => current_user.locale),
-                        :explore_link => explore_url,
-                        :email => (I18n.t('site.email.contact', :locale => current_user.locale)),
-                        :locale => current_user.locale)
-    Notification.create :user => current_user, :text => notification_text, :email_subject => email_subject, :email_text => email_text
+    Notification.create_notification(:project_received, current_user)
     flash[:success] = t('projects.send_mail.success')
     redirect_to :root
   end
@@ -220,7 +216,6 @@ class ProjectsController < ApplicationController
   def can_update_on_the_spot?
     project_fields = []
     project_admin_fields = ["name", "about", "headline", "can_finish", "expires_at", "user_id", "image_url", "video_url", "visible", "flickr_url", "rejected", "recommended", "permalink"]
-    backer_fields = ["display_notice"]
     backer_admin_fields = ["confirmed", "requested_refund", "refunded", "anonymous", "user_id"]
     reward_fields = []
     reward_admin_fields = ["description"]

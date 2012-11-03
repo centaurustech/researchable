@@ -1,0 +1,31 @@
+en:
+  notifications:
+    confirm_backer:
+      subject: "Thanks! Your support for %{project_name} has been confirmed!"
+      header: "Support Confirmed o/"
+    payment_slip:
+      subject: "Status of support for %{project_name}"
+      header: "Information on payment for the bill."
+    processing_payment:
+      subject: "Your support for %{project_name} has been received and is awaiting confirmation from %{payment_method}"
+      header: "Support Analysis - what is it?"
+    updates:
+      subject: "Update on %{project_name} by %{project_owner}: %{update_title}"
+    project_success:
+      subject: "Project successful: some important information"
+      header: "Successful project"
+    project_unsuccessful:
+      subject: "Your project was not funded on Researchable, but we'd appreciate your feedback"
+      header: "Project not funded."
+    backer_project_successful:
+      subject: "Hi! The project %{project_name} was successfully funded on Researchable!"
+      header: "Hi! The project you funded was successful on Researchable!"
+    backer_project_unsuccessful:
+      subject: "The project %{project_name} was not successful - some important information"
+      header: "Information on credits and refunds"
+    project_received:
+      subject: "Your project was received by Researchable"
+      header: "Your project was received and is being reviewed by the Researchable Team"
+    project_visible:
+      subject: "Your project is now visible on Researchable"
+      header: "Now it's live"

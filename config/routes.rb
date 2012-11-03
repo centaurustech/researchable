@@ -1,3 +1,4 @@
+require 'sidekiq/web'
 Catarse::Application.routes.draw do
   devise_for :users, :controllers => {:registrations => "registrations", :passwords => "passwords"} do
     get "/login" => "devise/sessions#new"
@@ -16,6 +17,12 @@ Catarse::Application.routes.draw do
       ['<script type="text/javascript" src="//connect.facebook.net/en_US/all.js"></script>']
     ]
   }
+
+  check_user_admin = lambda { |request| request.env["warden"].authenticate? and request.env['warden'].user.admin }
+  constraints check_user_admin do
+    mount Sidekiq::Web => '/sidekiq'
+  end
+  
   # Non production routes
   if Rails.env == "test"
     match "/fake_login" => "sessions#fake_create", :as => :fake_login
@@ -35,6 +42,7 @@ Catarse::Application.routes.draw do
   match "/reports/financial/:project_id/backers" => "reports#financial_by_project", :as => :backers_financial_report
   match "/reports/location/:project_id/backers" => "reports#location_by_project", :as => :backers_location_report
   match "/reports/users_most_backed" => "reports#users_most_backed", :as => :most_backed_report
+  match "/reports/users_most_backed_diff" => "reports#users_most_backed_diff", :as => :most_backed_diff_report
   match "/reports/all_confirmed_backers" => "reports#all_confirmed_backers", :as => :all_confirmed_backers_report
   match "/reports/all_projects_owners" => "reports#all_projects_owner", :as => :all_projects_owner_report
   match "/reports/all_emails" => "reports#all_emails_to_newsletter", :as => :all_emails_to_newsletter
@@ -66,6 +74,7 @@ Catarse::Application.routes.draw do
       end
       member do
         put 'checkout'
+        post 'update_info'
       end
     end
     collection do
@@ -111,6 +120,9 @@ Catarse::Application.routes.draw do
 
   namespace :adm do
     resources :backers do
+      member do
+       put 'confirm'
+      end
       collection do
         post 'update_attribute_on_the_spot'
       end

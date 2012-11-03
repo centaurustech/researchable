@@ -1,0 +1,27 @@
+- project = @notification.project
+|Hello, #{project.user.display_name}.
+br
+br
+|Your project just went on the air and you're ready to start receiving contributions!
+br
+br
+|#{link_to(project.name, "#{I18n.t('site.base_url')}/projects/#{project.to_param}")}
+br
+br
+|For any questions regarding your project or 
+strong transactions
+|, during the project about transferring the constributions that have been raised or refunds (hopefully not!), please email #{mail_to 'contact@researchable.info'}
+br
+br
+'Other questions, such as 
+strong editing 
+|dos items in your project, please email #{mail_to 'projects@researchable.info'}
+br
+br
+'To send promotional materials in our social media, on Facebook and Twitter, email #{mail_to 'contact@researchable.info'}. There you can get the ball rolling on communication strategies with our team and receive suggestions on how to spread the word in your campaign.
+br
+br
+|Thanks Again, 
+br
+br
+|The Researchable Team

@@ -448,6 +448,39 @@ ALTER SEQUENCE payment_logs_id_seq OWNED BY payment_logs.id;
 
 
 --
+-- Name: payment_notifications; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE payment_notifications (
+    id integer NOT NULL,
+    backer_id integer NOT NULL,
+    status text NOT NULL,
+    extra_data text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: payment_notifications_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE payment_notifications_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: payment_notifications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE payment_notifications_id_seq OWNED BY payment_notifications.id;
+
+
+--
 -- Name: project_totals; Type: VIEW; Schema: public; Owner: -
 --
 
@@ -488,6 +521,11 @@ CREATE TABLE projects (
     flickr_thumb text,
     flickr_square text,
     academic_email character varying(255),
+    topic text,
+    method text,
+    findings text,
+    funding text,
+    sources text,
     CONSTRAINT projects_about_not_blank CHECK ((length(btrim(about)) > 0)),
     CONSTRAINT projects_headline_length_within CHECK (((length(headline) >= 1) AND (length(headline) <= 140))),
     CONSTRAINT projects_headline_not_blank CHECK ((length(btrim(headline)) > 0))
@@ -728,6 +766,70 @@ CREATE VIEW statistics AS
 
 
 --
+-- Name: taggings; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE taggings (
+    id integer NOT NULL,
+    tag_id integer,
+    taggable_id integer,
+    taggable_type character varying(255),
+    tagger_id integer,
+    tagger_type character varying(255),
+    context character varying(128),
+    created_at timestamp without time zone
+);
+
+
+--
+-- Name: taggings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE taggings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: taggings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE taggings_id_seq OWNED BY taggings.id;
+
+
+--
+-- Name: tags; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE tags (
+    id integer NOT NULL,
+    name character varying(255)
+);
+
+
+--
+-- Name: tags_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE tags_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: tags_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE tags_id_seq OWNED BY tags.id;
+
+
+--
 -- Name: updates; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -870,6 +972,13 @@ ALTER TABLE ONLY payment_logs ALTER COLUMN id SET DEFAULT nextval('payment_logs_
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY payment_notifications ALTER COLUMN id SET DEFAULT nextval('payment_notifications_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY projects ALTER COLUMN id SET DEFAULT nextval('projects_id_seq'::regclass);
 
 
@@ -899,6 +1008,20 @@ ALTER TABLE ONLY states ALTER COLUMN id SET DEFAULT nextval('states_id_seq'::reg
 --
 
 ALTER TABLE ONLY static_contents ALTER COLUMN id SET DEFAULT nextval('static_contents_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY taggings ALTER COLUMN id SET DEFAULT nextval('taggings_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY tags ALTER COLUMN id SET DEFAULT nextval('tags_id_seq'::regclass);
 
 
 --
@@ -1020,6 +1143,14 @@ ALTER TABLE ONLY payment_logs
 
 
 --
+-- Name: payment_notifications_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY payment_notifications
+    ADD CONSTRAINT payment_notifications_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: projects_curated_pages_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1073,6 +1204,22 @@ ALTER TABLE ONLY states
 
 ALTER TABLE ONLY static_contents
     ADD CONSTRAINT static_contents_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: taggings_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY taggings
+    ADD CONSTRAINT taggings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: tags_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY tags
+    ADD CONSTRAINT tags_pkey PRIMARY KEY (id);
 
 
 --
@@ -1226,6 +1373,20 @@ CREATE INDEX index_rewards_on_project_id ON rewards USING btree (project_id);
 
 
 --
+-- Name: index_taggings_on_tag_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_taggings_on_tag_id ON taggings USING btree (tag_id);
+
+
+--
+-- Name: index_taggings_on_taggable_id_and_taggable_type_and_context; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE INDEX index_taggings_on_taggable_id_and_taggable_type_and_context ON taggings USING btree (taggable_id, taggable_type, context);
+
+
+--
 -- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1313,6 +1474,14 @@ ALTER TABLE ONLY notifications
 
 ALTER TABLE ONLY notifications
     ADD CONSTRAINT notifications_user_id_reference FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: payment_notifications_backer_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY payment_notifications
+    ADD CONSTRAINT payment_notifications_backer_id_fk FOREIGN KEY (backer_id) REFERENCES backers(id);
 
 
 --
@@ -1525,7 +1694,13 @@ INSERT INTO schema_migrations (version) VALUES ('20120808123236');
 
 INSERT INTO schema_migrations (version) VALUES ('20120816161341');
 
+INSERT INTO schema_migrations (version) VALUES ('20120828142018');
+
 INSERT INTO schema_migrations (version) VALUES ('20120828194453');
+
+INSERT INTO schema_migrations (version) VALUES ('20120830165535');
+
+INSERT INTO schema_migrations (version) VALUES ('20120830165611');
 
 INSERT INTO schema_migrations (version) VALUES ('20120925112402');
 
@@ -1550,3 +1725,9 @@ INSERT INTO schema_migrations (version) VALUES ('20120929145351');
 INSERT INTO schema_migrations (version) VALUES ('20120929184719');
 
 INSERT INTO schema_migrations (version) VALUES ('20121001010621');
+
+INSERT INTO schema_migrations (version) VALUES ('20121020170315');
+
+INSERT INTO schema_migrations (version) VALUES ('20121020211550');
+
+INSERT INTO schema_migrations (version) VALUES ('20121020221424');

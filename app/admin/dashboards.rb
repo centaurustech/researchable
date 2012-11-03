@@ -1,12 +1,16 @@
 #encoding: utf-8
-ActiveAdmin::Dashboards.build do
+ActiveAdmin.register_page "Dashboard" do
+  menu :priority => 1, :label => proc{ I18n.t("active_admin.dashboard") }
 
-  section "Reports" do
-    ul do
-      li link_to 'Most Backed Report', most_backed_report_path
-      li link_to 'All Confirmed Backers Report', all_confirmed_backers_report_path
-      li link_to 'All Project Owners Report', all_projects_owner_report_path
-      li link_to 'All Emails Subscribing to Newsletter Report', all_emails_to_newsletter_path
+  content :title => proc{ I18n.t("active_admin.dashboard") } do
+    section "Relatorios" do
+      ul do
+        li link_to 'Usuários que mais apoiaram projetos diferentes', most_backed_diff_report_path
+        li link_to 'Usuários que mais apoiaram', most_backed_report_path
+        li link_to 'Todos os apoios confirmados', all_confirmed_backers_report_path
+        li link_to 'Todos os realizadores', all_projects_owner_report_path
+        li link_to 'Todos os emails', all_emails_to_newsletter_path
+      end
     end
   end
 

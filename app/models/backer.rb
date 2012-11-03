@@ -5,8 +5,7 @@ class Backer < ActiveRecord::Base
   belongs_to :project
   belongs_to :user
   belongs_to :reward
-  has_many :payment_logs
-  has_one :payment_detail
+  has_many :payment_notifications
   validates_presence_of :project, :user, :value
   validates_numericality_of :value, :greater_than_or_equal_to => 5.00
   validate :reward_must_be_from_project
@@ -15,20 +14,24 @@ class Backer < ActiveRecord::Base
   scope :confirmed, where(:confirmed => true)
   scope :not_confirmed, where(:confirmed => false)
   scope :pending, where(:confirmed => false)
-  scope :display_notice, where(:display_notice => true)
-  scope :can_refund, where(:can_refund => true)
-  scope :within_refund_deadline, where("date(current_timestamp) <= date(created_at + interval '180 days')")
+  # Backers already refunded or with requested_refund should appear so that the user can see their status on the refunds list
+  scope :can_refund, ->{ where("confirmed AND EXISTS(SELECT true FROM projects p WHERE p.id = backers.project_id AND finished AND NOT successful) AND date(current_timestamp) <= date(created_at + interval '180 days')") }
   attr_protected :confirmed
 
   def price_in_cents
     (self.value * 100).round
   end
-
+  def refund!
+    self.refunded = true
+    self.save
+  end
   def confirm!
     self.confirmed = true
-    self.confirmed_at = Time.now
     self.save
-    notify_confirmation
+  end
+
+  def can_refund?
+    confirmed? && created_at >= (Date.today - 180.days) && project.finished? && !project.successful?
   end
 
   def reward_must_be_from_project
@@ -51,7 +54,7 @@ class Backer < ActiveRecord::Base
   end
 
   def display_value
-    number_to_currency value, :unit => "$", :precision => 0, :delimiter => '.'
+    number_to_currency value, :unit => "$", :precision => 0, :delimiter => ','
   end
 
   def display_confirmed_at
@@ -63,13 +66,8 @@ class Backer < ActiveRecord::Base
   end
 
   def display_platform_fee(fee=7.5)
-    number_to_currency platform_fee(fee), :unit => "$", :precision => 2, :delimiter => '.'
+    number_to_currency platform_fee(fee), :unit => "$", :precision => 2, :delimiter => ','
   end
-
-  def payment_service_fee
-    (payment_detail || build_payment_detail.update_from_service).service_tax_amount.to_f
-  end
-
   def moip_value
     "%0.0f" % (value * 100)
   end
@@ -80,10 +78,6 @@ class Backer < ActiveRecord::Base
     raise I18n.t('credits.refund.no_credits') unless self.user.credits >= self.value
     self.update_attributes({ requested_refund: false })
     self.user.update_attributes({ credits: (self.user.credits + self.value) })
-  end
-
-  def refund_deadline
-    created_at + 180.days
   end
 
   def as_json(options={})
@@ -120,22 +114,5 @@ class Backer < ActiveRecord::Base
 
   def define_payment_method
     self.update_attributes({ payment_method: 'MoIP' })
-  end
-
-  def confirm?
-    if confirmed and confirmed_at.nil?
-      self.confirmed_at = Time.now
-      self.display_notice = true
-    end
-  end
-
-  protected
-
-  def notify_confirmation
-    text = I18n.t('notifications.backers.to_backer.text', :backer_name => user.display_name, :backer_value => display_value, :reward => "#{reward.description if reward}", :project_name => project.name)
-    Notification.create! :user => user,
-                         :email_subject => I18n.t('notifications.backers.to_backer.subject', :project => project.name),
-                         :email_text => text,
-                         :text => text
   end
 end

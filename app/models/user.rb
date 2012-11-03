@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
     Rails.logger.info "-----> #{e.inspect}"
   end
 
-  delegate  :display_name, :display_image, :short_name, :display_provider,
+  delegate  :display_name, :display_image, :short_name, :display_provider, :display_image_html,
             :medium_name, :display_credits, :display_total_of_backs,
             :to => :decorator
 
@@ -70,6 +70,7 @@ class User < ActiveRecord::Base
   belongs_to :primary, :class_name => 'User', :foreign_key => :primary_user_id, :primary_key => :id
   scope :primary, :conditions => ["primary_user_id IS NULL"]
   scope :backers, :conditions => ["id IN (SELECT DISTINCT user_id FROM backers WHERE confirmed)"]
+  scope :who_backed_project, ->(project_id){ where("id IN (SELECT user_id FROM backers WHERE confirmed AND project_id = ?)", project_id) }
   scope :most_backeds, ->{
     joins(:backs).select(
     <<-SQL
@@ -83,8 +84,28 @@ class User < ActiveRecord::Base
     order("count_backs desc").
     group("users.name, users.id, users.email")
   }
+  scope :most_backed_different_projects, -> {
+    joins(:backs).select(
+      <<-SQL
+        DISTINCT(users.id),
+        (
+          SELECT
+            COUNT(DISTINCT(backers.project_id))
+          FROM
+            backers
+          WHERE
+            backers.confirmed IS TRUE
+            AND backers.user_id = users.id
+            AND users.primary_user_id IS NULL
+        ) as count_backs
+      SQL
+    ).
+    where("backers.confirmed is true").
+    order("count_backs DESC")
+
+  }
   scope :by_email, ->(email){ where('email ~* ?', email) }
-  scope :by_payer_email, ->(email){  where('EXISTS(SELECT true FROM backers JOIN payment_details ON backers.id = payment_details.backer_id WHERE backers.user_id = users.id AND payment_details.payer_email ~* ?)', email) }
+  scope :by_payer_email, ->(email){  where('EXISTS(SELECT true FROM backers JOIN payment_notifications ON backers.id = payment_notifications.backer_id WHERE backers.user_id = users.id AND payment_notifications.extra_data ~* ?)', email) }
   scope :by_name, ->(name){ where('name ~* ?', name) }
   scope :by_id, ->(id){ where('id = ?', id) }
   scope :by_key, ->(key){ where('EXISTS(SELECT true FROM backers WHERE backers.user_id = users.id AND backers.key ~* ?)', key) }
@@ -104,9 +125,17 @@ class User < ActiveRecord::Base
         to_sql
     ).reduce({}){|memo,el| memo.merge({ el[0].to_sym => BigDecimal.new(el[1] || '0') }) }
   end
-
+  
+  def total_of_different_backs
+    backs.confirmed.select('DISTINCT(backers.project_id)').length
+  end
+  
   def decorator
-    UserDecorator.new(self)
+    @decorator ||= UserDecorator.new(self)
+  end
+  
+  def have_address?
+    address_street.present? and address_number.present? and address_city.present?
   end
 
   def admin?
@@ -143,6 +172,14 @@ class User < ActiveRecord::Base
       user.bio = auth["info"]["description"][0..139] if auth["info"]["description"]
       user.locale = I18n.locale.to_s
       user.image_url =  auth["info"]["image"]
+      
+      if auth["provider"] == "twitter"
+        user.image_url = "https://api.twitter.com/1/users/profile_image?screen_name=#{auth['info']['nickname']}&size=original"
+      end
+
+      if auth["provider"] == "facebook"
+        user.image_url = "https://graph.facebook.com/#{auth['uid']}/picture?type=large"
+      end
     end
   end
 
