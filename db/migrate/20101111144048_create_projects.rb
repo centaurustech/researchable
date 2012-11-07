@@ -9,7 +9,7 @@ class CreateProjects < ActiveRecord::Migration
       t.datetime :expires_at, :null => false
       t.text :about, :null => false
       t.text :headline, :null => false
-      t.text :video_url,
+      t.text :video_url
       t.text :image_url
       t.text :short_url
       t.boolean :visible, :default => false

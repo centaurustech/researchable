@@ -9,6 +9,14 @@ SET check_function_bodies = false;
 SET client_min_messages = warning;
 
 --
+-- Name: researchable_development; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON DATABASE researchable_development IS '
+';
+
+
+--
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -516,16 +524,10 @@ CREATE TABLE projects (
     successful boolean DEFAULT false,
     permalink character varying(255),
     flickr_url text,
-    photo text,
     flickr_image text,
     flickr_thumb text,
     flickr_square text,
     academic_email character varying(255),
-    topic text,
-    method text,
-    findings text,
-    funding text,
-    sources text,
     CONSTRAINT projects_about_not_blank CHECK ((length(btrim(about)) > 0)),
     CONSTRAINT projects_headline_length_within CHECK (((length(headline) >= 1) AND (length(headline) <= 140))),
     CONSTRAINT projects_headline_not_blank CHECK ((length(btrim(headline)) > 0))
@@ -766,70 +768,6 @@ CREATE VIEW statistics AS
 
 
 --
--- Name: taggings; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE taggings (
-    id integer NOT NULL,
-    tag_id integer,
-    taggable_id integer,
-    taggable_type character varying(255),
-    tagger_id integer,
-    tagger_type character varying(255),
-    context character varying(128),
-    created_at timestamp without time zone
-);
-
-
---
--- Name: taggings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE taggings_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: taggings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE taggings_id_seq OWNED BY taggings.id;
-
-
---
--- Name: tags; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE tags (
-    id integer NOT NULL,
-    name character varying(255)
-);
-
-
---
--- Name: tags_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE tags_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: tags_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE tags_id_seq OWNED BY tags.id;
-
-
---
 -- Name: updates; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1008,20 +946,6 @@ ALTER TABLE ONLY states ALTER COLUMN id SET DEFAULT nextval('states_id_seq'::reg
 --
 
 ALTER TABLE ONLY static_contents ALTER COLUMN id SET DEFAULT nextval('static_contents_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY taggings ALTER COLUMN id SET DEFAULT nextval('taggings_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY tags ALTER COLUMN id SET DEFAULT nextval('tags_id_seq'::regclass);
 
 
 --
@@ -1207,22 +1131,6 @@ ALTER TABLE ONLY static_contents
 
 
 --
--- Name: taggings_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY taggings
-    ADD CONSTRAINT taggings_pkey PRIMARY KEY (id);
-
-
---
--- Name: tags_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY tags
-    ADD CONSTRAINT tags_pkey PRIMARY KEY (id);
-
-
---
 -- Name: updates_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1370,20 +1278,6 @@ CREATE INDEX index_projects_on_user_id ON projects USING btree (user_id);
 --
 
 CREATE INDEX index_rewards_on_project_id ON rewards USING btree (project_id);
-
-
---
--- Name: index_taggings_on_tag_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_taggings_on_tag_id ON taggings USING btree (tag_id);
-
-
---
--- Name: index_taggings_on_taggable_id_and_taggable_type_and_context; Type: INDEX; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE INDEX index_taggings_on_taggable_id_and_taggable_type_and_context ON taggings USING btree (taggable_id, taggable_type, context);
 
 
 --
@@ -1704,12 +1598,6 @@ INSERT INTO schema_migrations (version) VALUES ('20120830165611');
 
 INSERT INTO schema_migrations (version) VALUES ('20120925112402');
 
-INSERT INTO schema_migrations (version) VALUES ('20120925223358');
-
-INSERT INTO schema_migrations (version) VALUES ('20120926010748');
-
-INSERT INTO schema_migrations (version) VALUES ('20120926150928');
-
 INSERT INTO schema_migrations (version) VALUES ('20120926223511');
 
 INSERT INTO schema_migrations (version) VALUES ('20120926223643');
@@ -1722,12 +1610,4 @@ INSERT INTO schema_migrations (version) VALUES ('20120929133832');
 
 INSERT INTO schema_migrations (version) VALUES ('20120929145351');
 
-INSERT INTO schema_migrations (version) VALUES ('20120929184719');
-
 INSERT INTO schema_migrations (version) VALUES ('20121001010621');
-
-INSERT INTO schema_migrations (version) VALUES ('20121020170315');
-
-INSERT INTO schema_migrations (version) VALUES ('20121020211550');
-
-INSERT INTO schema_migrations (version) VALUES ('20121020221424');
