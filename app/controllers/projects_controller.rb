@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
   skip_before_filter :detect_locale, :only => [:backers]
   before_filter :can_update_on_the_spot?, :only => :update_attribute_on_the_spot
   before_filter :date_format_convert, :only => [:create]
-  
+
   def date_format_convert
     # TODO localize here and on the datepicker on project_form.js
     params["project"]["expires_at"] = Date.strptime(params["project"]["expires_at"], '%d/%m/%Y')
@@ -42,7 +42,10 @@ class ProjectsController < ApplicationController
           total
         end || []
 
-
+        calendar = Calendar.new
+        @events = Rails.cache.fetch 'calendar', expires_in: 30.minutes do
+          calendar.fetch_events_from("catarse.me_237l973l57ir0v6279rhrr1qs0@group.calendar.google.com") || []
+        end
         @curated_pages = CuratedPage.visible.order("created_at desc").limit(8)
         @last_tweets = Rails.cache.fetch('last_tweets', :expires_in => 30.minutes) do
           begin
@@ -90,6 +93,7 @@ class ProjectsController < ApplicationController
 
     # Send project receipt
     Notification.create_notification(:project_received, current_user)
+
     flash[:success] = t('projects.send_mail.success')
     redirect_to :root
   end
@@ -129,6 +133,7 @@ class ProjectsController < ApplicationController
       if !params[:permalink].present? and @project.permalink.present?
         return redirect_to project_by_slug_url(permalink: @project.permalink)
       end
+
       show!{
         @title = @project.name
         @rewards = @project.rewards.order(:minimum_value).all
@@ -208,14 +213,14 @@ class ProjectsController < ApplicationController
   def bitly
     return unless Rails.env.production?
     require 'net/http'
-    res = Net::HTTP.start("api.bit.ly", 80) { |http| http.get("/v3/shorten?login=researchable&apiKey=R_81adeb6f8e1c61df926b63755ca2df68&longUrl=#{CGI.escape(project_url(@project))}") }
+    res = Net::HTTP.start("api.bit.ly", 80) { |http| http.get("/v3/shorten?login=diogob&apiKey=R_76ee3ab860d76d0d1c1c8e9cc5485ca1&longUrl=#{CGI.escape(project_url(@project))}") }
     data = JSON.parse(res.body)['data']
     data['url'] if data
   end
 
   def can_update_on_the_spot?
     project_fields = []
-    project_admin_fields = ["name", "about", "headline", "can_finish", "expires_at", "user_id", "image_url", "video_url", "visible", "flickr_url", "rejected", "recommended", "permalink"]
+    project_admin_fields = ["name", "about", "headline", "can_finish", "expires_at", "user_id", "image_url", "video_url", "visible", "rejected", "recommended", "permalink"]
     backer_admin_fields = ["confirmed", "requested_refund", "refunded", "anonymous", "user_id"]
     reward_fields = []
     reward_admin_fields = ["description"]

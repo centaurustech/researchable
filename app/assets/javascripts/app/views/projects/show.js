@@ -170,7 +170,7 @@ CATARSE.ProjectsShowView = Backbone.View.extend({
     window.location.href = url;
     //CATARSE.requireLogin(event, url)
   },
-  
+
   requireLogin: function(event) {
     CATARSE.requireLogin(event)
   }

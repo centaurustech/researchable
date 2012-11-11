@@ -72,7 +72,7 @@ describe Projects::BackersController do
 
   describe "POST review" do
     context "without user" do
-      before do 
+      before do
         request.env['REQUEST_URI'] = "/test_path"
         post :review, {:locale => :pt, :project_id => @project.id}
       end
@@ -92,7 +92,7 @@ describe Projects::BackersController do
         request.session[:thank_you_id].should == @project.id
         response.body =~ /#{I18n.t('projects.backers.checkout.title')}/
         response.body =~ /#{@project.name}/
-        response.body =~ /R\$ 20/
+        response.body =~ /\$ 20/
       end
     end
   end
@@ -158,7 +158,7 @@ describe Projects::BackersController do
         request.session[:user_id]=@user.id
         get :index, {:locale => :pt, :project_id => @project.id}
 
-        ActiveSupport::JSON.decode(response.body).to_s.should =~ /R\$ 10/
+        ActiveSupport::JSON.decode(response.body).to_s.should =~ /\$ 10/
         ActiveSupport::JSON.decode(response.body).to_s.should =~ /Lorem Ipsum/
       end
     end

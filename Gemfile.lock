@@ -549,6 +549,7 @@ DEPENDENCIES
   sass-rails (~> 3.2.5)
   selenium-webdriver (~> 2.25.0)
   shoulda
+  shoulda-matchers
   sidekiq (= 2.4.0)
   sinatra
   slim

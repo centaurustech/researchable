@@ -77,8 +77,8 @@ describe Reward do
     r.maximum_backers = 1
     r.name.should == "<div class='reward_minimum_value'>Não quero recompensa</div><div class='reward_description'>Description</div><div class='clear'></div>"
     r.minimum_value = 1
-    r.name.should == "<div class='reward_minimum_value'>$ 1.00+</div><div class='reward_description'>Description</div><div class='clear'></div>"
+    r.name.should == "<div class='reward_minimum_value'>$ 1,00+</div><div class='reward_description'>Description</div><div class='clear'></div>"
     r.description = "Description<javascript>XSS()</javascript>"
-    r.name.should == "<div class='reward_minimum_value'>$ 1.00+</div><div class='reward_description'>Description&lt;javascript&gt;XSS()&lt;/javascript&gt;</div><div class='clear'></div>"
+    r.name.should == "<div class='reward_minimum_value'>$ 1,00+</div><div class='reward_description'>Description&lt;javascript&gt;XSS()&lt;/javascript&gt;</div><div class='clear'></div>"
   end
 end

@@ -41,7 +41,7 @@ CATARSE.ReviewForm = Backbone.View.extend({
 
     var phone_number_ok = function(){
       var value = $('#user_phone_number').val()
-      var re = /^\([0-9]{2}\)[0-9]{4}-[0-9]{4}[0-9_ ]?$/
+      var re = /^\([0-9]{3}\)[0-9]{3}-[0-9]{4}$/
       if(value.match(re)){
         $('#user_phone_number').addClass("ok").removeClass("error")
         return true
@@ -49,50 +49,6 @@ CATARSE.ReviewForm = Backbone.View.extend({
         $('#user_phone_number').addClass("error").removeClass("ok")
         return false
       }
-    };
-
-    var zip_code_ok = function(){
-      if(zip_code_valid){
-        $('#user_address_zip_code').addClass("ok").removeClass("error")
-        return true
-      } else if(/^[0-9]{5}-[0-9]{3}$/i.test($('#user_address_zip_code').val())) {
-        if(!$('#user_address_zip_code').hasClass('loading'))
-          $('#user_address_zip_code').removeClass("error").removeClass("ok")
-        return true
-      } else {
-        if(!$('#user_address_zip_code').hasClass('loading'))
-          $('#user_address_zip_code').addClass("error").removeClass("ok")
-        return false
-      }
-    };
-
-    var verify_zip_code = function(){
-      zip_code_valid = false
-      if(/^[0-9]{5}-[0-9]{3}$/i.test($('#user_address_zip_code').val())) {
-        $('#user_address_zip_code').removeClass("ok").removeClass("error").addClass('loading')
-        $.get('/projects/cep/?cep='+$('#user_address_zip_code').val(), function(r){
-          $('#user_address_zip_code').removeClass("loading")
-          if(r.ok==true){
-            zip_code_valid = true
-            if(r.street != $('#user_address_street').val()){
-              $('#user_address_street').val(r.street).effect("highlight", {}, 1500)
-              $('#user_address_number').val(null).effect("highlight", {}, 1500)
-              $('#user_address_complement').val(null).effect("highlight", {}, 1500)
-              $('#user_address_number').focus()
-            }
-            if(r.neighbourhood != $('#user_address_neighbourhood').val())
-              $('#user_address_neighbourhood').val(r.neighbourhood).effect("highlight", {}, 1500)
-            if(r.city != $('#user_address_city').val())
-              $('#user_address_city').val(r.city).effect("highlight", {}, 1500)
-            if(r.state != $('#user_address_state').val())
-              $('#user_address_state').val(r.state).effect("highlight", {}, 1500)
-          } else {
-            zip_code_valid = false
-          }
-          everything_ok()
-        })
-      }
-      everything_ok()
     };
 
     var all_ok = true
@@ -104,10 +60,6 @@ CATARSE.ReviewForm = Backbone.View.extend({
       if(!phone_number_ok())
         all_ok = false
       if(!ok('#user_address_street'))
-        all_ok = false
-      if(!ok('#user_address_number'))
-        all_ok = false
-      if(!ok('#user_address_neighbourhood'))
         all_ok = false
       if(!ok('#user_address_city'))
         all_ok = false
@@ -122,6 +74,7 @@ CATARSE.ReviewForm = Backbone.View.extend({
       $('#user_submit').attr('disabled', false)
       if($('#back_with_credits').length < 1) {
         $('#payment.hide').show();
+		$('#payments_type.hide').show();
       }
     } else {
       $('#payment.hide').hide();
@@ -139,7 +92,7 @@ CATARSE.ReviewForm = Backbone.View.extend({
   },
 
   onPaymentTabClick: function(e){
-    $('.payments_type').hide();
+    $('.payments_type').show();
     $('.tab_container #payment_menu a').removeClass('selected');
     e.preventDefault();
     var reference = $(e.currentTarget).attr('href');
@@ -163,8 +116,7 @@ CATARSE.ReviewForm = Backbone.View.extend({
     var _this = this;
 
     $('#user_cpf').mask("999.999.999-99")
-    $('#user_address_zip_code').mask("99999-999")
-    $('#user_phone_number').mask("(99)9999-9999?9")
+    $('#user_phone_number').mask("(999)999-9999")
 
     if(this.accepted_terms()){
       this.everything_ok();
@@ -180,9 +132,6 @@ CATARSE.ReviewForm = Backbone.View.extend({
       payer_name: $('#user_full_name').val(),
       payer_email: $('#user_email').val(),
       address_street: $('#user_address_street').val(),
-      address_number: $('#user_address_number').val(),
-      address_complement: $('#user_address_complement').val(),
-      address_neighbourhood: $('#user_address_neighbourhood').val(),
       address_zip_code: $('#user_address_zip_code').val(),
       address_city: $('#user_address_city').val(),
       address_state: $('#user_address_state').val(),
@@ -215,7 +164,6 @@ CATARSE.BackersReviewView = Backbone.View.extend({
   },
 
   initialize: function() {
-    $('.payments_type').hide();
     $('.tab_container #payment_menu a').removeClass('selected');
     this.$('.tab_container #payment_menu a:first').trigger('click')
     this.reviewForm = new CATARSE.ReviewForm();

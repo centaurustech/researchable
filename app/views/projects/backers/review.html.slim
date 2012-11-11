@@ -22,20 +22,21 @@
         #back_with_credits
           .bootstrap-alert
             .alert
-              #credits_notice= t('.credits_notice_html', :credits => number_to_currency((current_user.credits - @backer.value), :unit => '$', :precision => 0, :delimiter => '.'))
+              #credits_notice= t('.credits_notice_html', :credits => number_to_currency((current_user.credits - @backer.value), :unit => 'R$', :precision => 0, :delimiter => '.'))
       .bootstrap-form
         = semantic_form_for current_user, :url => checkout_project_backer_path(@backer.project, @backer), :html => { :id => 'review_form', :class => "form-horizontal #{('dont_align' if @backer.credits)}" } do |form|
+          = hidden_field_tag 'project_id', @backer.project.id
           = hidden_field_tag 'backer_id', @backer.id
           = hidden_field_tag 'backer_credits', @backer.credits
           = hidden_field_tag 'payment_method_url', nil
           - unless @backer.credits
             = form.inputs do
               = form.input :full_name, :required => true, :as => :string
+              /= form.input :cpf, :as => :string, :input_html => {:autocomplete => 'off'}
               = form.input :email, :required => true, :as => :string
               = form.input :address_street, :as => :string
-              = form.input :address_number, :as => :string
-              = form.input :address_zip_code, :as => :string, :input_html => {:autocomplete => 'off'}
               = form.input :address_city, :as => :string
+              = form.input :address_state, :as => :select, :collection => State.array
               = form.input :phone_number, :as => :string, :input_html => {:autocomplete => 'off'}
           .submit
             fieldset.accept_terms
@@ -46,17 +47,14 @@
                 .bootstrap-twitter
                   = form.submit (@backer.credits ? t('.submit.credits') : t('.submit.moip')), :disabled => true, :class => 'btn', :id => 'user_submit'
 
-          #payment.hide
-            .title
-              h1= t('.choose_payment')
-              h2= t('.choose_payment_subtitle')
-            .choose_payment
-              - if defined?(CatarsePaypalExpress)
-                .cc
-                  = link_to 'javascript:void(0);', :"data-payment_method_url" => catarse_paypal_express.payment_pay_paypal_express_path(@backer), :method => :get, :class => 'payment_link' do
-                    p
-                      span= t('.pay_with')
-                    = image_tag 'catarse/icon-paypal.png'
-                  = image_tag 'catarse/paypal-choice.png'
-                  .clearfix
+        #payment.hide
+          .title
+            h1= t('.choose_payment')
+            h2= t('.choose_payment_subtitle')  
+
+          .tab_container
+            nav#payment_menu
+              = link_to '#paypal_payment', :id => 'paypal', :'data-target' => catarse_paypal_express.payment_review_paypal_express_path(@backer) do
+                = t('.choose_credit_card')
+          #paypal_payment.payments_type.hide
     .clearfix

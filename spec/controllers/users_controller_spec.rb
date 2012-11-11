@@ -7,7 +7,7 @@ describe UsersController do
 
   let(:successful_project){ Factory(:project, :finished => true, :successful => true) }
   let(:failed_project){ Factory(:project, :finished => true, :successful => false) }
-  let(:backer){ Factory(:backer, :user => user, :project => failed_project, :can_refund => true) }
+  let(:backer){ Factory(:backer, :user => user, :project => failed_project) }
   let(:user){ Factory(:user, :provider => 'facebook', :uid => '666') }
 
   describe "PUT update" do
@@ -30,7 +30,7 @@ describe UsersController do
   describe "POST request_refund" do
     context "without user" do
       it 'should raise a exception' do
-        lambda { 
+        lambda {
           post :request_refund, { id: user.id, back_id: backer.id }
         }.should raise_exception CanCan::AccessDenied, 'You are not authorized to access this page.'
       end

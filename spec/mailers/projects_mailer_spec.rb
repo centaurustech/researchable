@@ -8,6 +8,7 @@ describe ProjectsMailer do
     rewards = "Rewards of the project\n<javascript>"
     video = "http://vimeo.com/9090 <javascript>"
     twitter = "username <javascript>"
+    flickr = "http://www.flickr.com/photos/12037949754@N01/ <javascript>"
     facebook = "FB username <javascript>"
     blog = "www.lorem.com <javascript>"
     links = "Links of the project\n<javascript>"

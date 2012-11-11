@@ -20,6 +20,13 @@ describe UserDecorator do
     end
   end
 
+  describe "#display_image_html" do
+    let(:user){ Factory.build(:user, :image_url => 'image.jpg', :uploaded_image => nil )}
+    let(:options){ {:width => 300, :height => 300} }
+    subject{ user.display_image_html(options) }
+    it{ should == "<div class=\"avatar_wrapper\" style=\"width: #{options[:width]}px; height: #{options[:height]}px\"><img alt=\"User\" src=\"/assets/#{user.display_image}\" style=\"width: #{options[:width]}px; height: auto\" /></div>" }
+  end
+
   describe "#display_image" do
     subject{ user.display_image }
 
@@ -40,7 +47,7 @@ describe UserDecorator do
 
     context "when we have an email" do
       let(:user){ Factory(:user, :image_url => nil, :email => 'diogob@gmail.com') }
-      it{ should == "http://gravatar.com/avatar/5e2a237dafbc45f79428fdda9c5024b1.jpg?default=#{I18n.t('site.base_url')}/assets/user.png" }
+      it{ should == "https://gravatar.com/avatar/5e2a237dafbc45f79428fdda9c5024b1.jpg?default=#{I18n.t('site.base_url')}/assets/user.png" }
     end
 
     context "when we do not have an image nor an email" do
@@ -51,7 +58,7 @@ describe UserDecorator do
 
   describe "#short_name" do
     subject { user = Factory(:user, name: 'My Name Is Lorem Ipsum Dolor Sit Amet') }
-    its(:short_name) { should == 'My Name Is Lorem Ipsum ...' }
+    its(:short_name) { should == 'My Name Is Lorem ...' }
   end
 
   describe "#medium_name" do

@@ -35,8 +35,6 @@ ActiveAdmin.register Project do
       f.input :about
       f.input :headline
       f.input :video_url, :as => :string
-      f.input :visible
-      f.input :recommended
       f.input :can_finish
       f.input :finished
     end

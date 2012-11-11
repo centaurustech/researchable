@@ -15,7 +15,7 @@ describe User do
     it{ should have_one :user_total }
   end
 
-  describe "validations" do 
+  describe "validations" do
     before{ user }
     it{ should validate_presence_of :provider }
     it{ should validate_presence_of :uid }
@@ -44,16 +44,16 @@ describe User do
 
   describe ".by_payer_email" do
     before do
-      p = Factory(:payment_detail)
+      p = Factory(:payment_notification)
       backer = p.backer
       @u = backer.user
-      p.payer_email = 'foo@bar.com'
+      p.extra_data = {'payer_email' => 'foo@bar.com'}
       p.save!
-      p = Factory(:payment_detail, :backer => backer)
-      p.payer_email = 'another_email@bar.com'
+      p = Factory(:payment_notification, :backer => backer)
+      p.extra_data = {'payer_email' => 'another_email@bar.com'}
       p.save!
-      p = Factory(:payment_detail)
-      p.payer_email = 'another_email@bar.com'
+      p = Factory(:payment_notification)
+      p.extra_data = {'payer_email' => 'another_email@bar.com'}
       p.save!
     end
     subject{ User.by_payer_email 'foo@bar.com' }
@@ -109,6 +109,16 @@ describe User do
     it{ should == user }
   end
 
+  describe ".who_backed_project" do
+    subject{ User.who_backed_project(successful_project.id) }
+    before do
+      @backer = Factory(:backer, :confirmed => true, :project => successful_project)
+      Factory(:backer, :confirmed => true, :project => successful_project, :user => @backer.user)
+      Factory(:backer, :confirmed => false, :project => successful_project)
+    end
+    it{ should == [@backer.user] }
+  end
+
   describe ".backer_totals" do
     before do
       Factory(:backer, :value => 100, :credits => false, :project => successful_project)
@@ -154,7 +164,26 @@ describe User do
     its(:name){ should == auth['info']['name'] }
     its(:nickname){ should == auth['info']['nickname'] }
     its(:bio){ should == auth['info']['description'][0..139] }
-    its(:image_url){ should == auth['info']['image'] }
+
+    context "when user is from facebook" do
+      let(:auth)  do {
+        'provider' => "facebook",
+        'uid' => "foobar",
+        'info' => {
+          'name' => "Foo bar",
+          'email' => 'another_email@anotherdomain.com',
+          'nickname' => "foobar",
+          'description' => "Foo bar's bio".ljust(200),
+          'image' => "image.png"
+        }
+      }
+      end
+      its(:image_url){ should == "https://graph.facebook.com/#{auth['uid']}/picture?type=large" }
+    end
+
+    context "when user is from twitter" do
+      its(:image_url){ should == "https://api.twitter.com/1/users/profile_image?screen_name=#{auth['info']['nickname']}&size=original" }
+    end
   end
 
   describe ".find_with_omniauth" do
@@ -166,8 +195,8 @@ describe User do
   end
 
   describe ".create" do
-    subject do 
-      User.create! do |u| 
+    subject do
+      User.create! do |u|
         u.provider = 'twitter'
         u.uid = '123'
         u.twitter = '@dbiazus'

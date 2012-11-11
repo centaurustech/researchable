@@ -30,6 +30,20 @@ CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
 COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
+--
+-- Name: unaccent; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS unaccent WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION unaccent; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION unaccent IS 'text search dictionary that removes accents';
+
+
 SET search_path = public, pg_catalog;
 
 SET default_tablespace = '';
@@ -86,10 +100,8 @@ CREATE TABLE backers (
     confirmed_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    display_notice boolean DEFAULT false,
     anonymous boolean DEFAULT false,
     key text,
-    can_refund boolean DEFAULT false,
     requested_refund boolean DEFAULT false,
     refunded boolean DEFAULT false,
     credits boolean DEFAULT false,
@@ -97,6 +109,19 @@ CREATE TABLE backers (
     payment_method text,
     payment_token text,
     payment_id character varying(255),
+    payer_name text,
+    payer_email text,
+    payer_document text,
+    address_street text,
+    address_number text,
+    address_complement text,
+    address_neighbourhood text,
+    address_zip_code text,
+    address_city text,
+    address_state text,
+    address_phone_number text,
+    payment_choice text,
+    payment_service_fee numeric,
     CONSTRAINT backers_value_positive CHECK ((value >= (0)::numeric))
 );
 
@@ -296,6 +321,37 @@ ALTER SEQUENCE institutional_videos_id_seq OWNED BY institutional_videos.id;
 
 
 --
+-- Name: notification_types; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE TABLE notification_types (
+    id integer NOT NULL,
+    name text NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: notification_types_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE notification_types_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: notification_types_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE notification_types_id_seq OWNED BY notification_types.id;
+
+
+--
 -- Name: notifications; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -310,7 +366,9 @@ CREATE TABLE notifications (
     email_text text,
     dismissed boolean DEFAULT false NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    notification_type_id integer,
+    backer_id integer
 );
 
 
@@ -374,50 +432,6 @@ ALTER SEQUENCE oauth_providers_id_seq OWNED BY oauth_providers.id;
 
 
 --
--- Name: payment_details; Type: TABLE; Schema: public; Owner: -; Tablespace: 
---
-
-CREATE TABLE payment_details (
-    id integer NOT NULL,
-    backer_id integer,
-    payer_name character varying(255),
-    payer_email character varying(255),
-    city character varying(255),
-    uf character varying(255),
-    payment_method character varying(255),
-    net_amount numeric,
-    total_amount numeric,
-    service_tax_amount numeric,
-    backer_amount_tax numeric,
-    payment_status character varying(255),
-    service_code character varying(255),
-    institution_of_payment character varying(255),
-    payment_date timestamp without time zone,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: payment_details_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE payment_details_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: payment_details_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE payment_details_id_seq OWNED BY payment_details.id;
-
-
---
 -- Name: payment_logs; Type: TABLE; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -462,7 +476,6 @@ ALTER SEQUENCE payment_logs_id_seq OWNED BY payment_logs.id;
 CREATE TABLE payment_notifications (
     id integer NOT NULL,
     backer_id integer NOT NULL,
-    status text NOT NULL,
     extra_data text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -528,6 +541,7 @@ CREATE TABLE projects (
     flickr_thumb text,
     flickr_square text,
     academic_email character varying(255),
+    video_thumbnail text,
     CONSTRAINT projects_about_not_blank CHECK ((length(btrim(about)) > 0)),
     CONSTRAINT projects_headline_length_within CHECK (((length(headline) >= 1) AND (length(headline) <= 140))),
     CONSTRAINT projects_headline_not_blank CHECK ((length(btrim(headline)) > 0))
@@ -882,6 +896,13 @@ ALTER TABLE ONLY institutional_videos ALTER COLUMN id SET DEFAULT nextval('insti
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY notification_types ALTER COLUMN id SET DEFAULT nextval('notification_types_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY notifications ALTER COLUMN id SET DEFAULT nextval('notifications_id_seq'::regclass);
 
 
@@ -890,13 +911,6 @@ ALTER TABLE ONLY notifications ALTER COLUMN id SET DEFAULT nextval('notification
 --
 
 ALTER TABLE ONLY oauth_providers ALTER COLUMN id SET DEFAULT nextval('oauth_providers_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY payment_details ALTER COLUMN id SET DEFAULT nextval('payment_details_id_seq'::regclass);
 
 
 --
@@ -1027,6 +1041,14 @@ ALTER TABLE ONLY curated_pages
 
 
 --
+-- Name: notification_types_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+--
+
+ALTER TABLE ONLY notification_types
+    ADD CONSTRAINT notification_types_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: notifications_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1048,14 +1070,6 @@ ALTER TABLE ONLY oauth_providers
 
 ALTER TABLE ONLY oauth_providers
     ADD CONSTRAINT oauth_providers_pkey PRIMARY KEY (id);
-
-
---
--- Name: payment_details_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
---
-
-ALTER TABLE ONLY payment_details
-    ADD CONSTRAINT payment_details_pkey PRIMARY KEY (id);
 
 
 --
@@ -1246,6 +1260,13 @@ CREATE INDEX index_curated_pages_on_permalink ON curated_pages USING btree (perm
 
 
 --
+-- Name: index_notification_types_on_name; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+--
+
+CREATE UNIQUE INDEX index_notification_types_on_name ON notification_types USING btree (name);
+
+
+--
 -- Name: index_projects_on_category_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
 --
 
@@ -1352,6 +1373,22 @@ ALTER TABLE ONLY backers
 
 ALTER TABLE ONLY comments
     ADD CONSTRAINT comments_user_id_reference FOREIGN KEY (user_id) REFERENCES users(id);
+
+
+--
+-- Name: notifications_backer_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY notifications
+    ADD CONSTRAINT notifications_backer_id_fk FOREIGN KEY (backer_id) REFERENCES backers(id);
+
+
+--
+-- Name: notifications_notification_type_id_fk; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY notifications
+    ADD CONSTRAINT notifications_notification_type_id_fk FOREIGN KEY (notification_type_id) REFERENCES notification_types(id);
 
 
 --
@@ -1596,6 +1633,26 @@ INSERT INTO schema_migrations (version) VALUES ('20120830165535');
 
 INSERT INTO schema_migrations (version) VALUES ('20120830165611');
 
+INSERT INTO schema_migrations (version) VALUES ('20120830193053');
+
+INSERT INTO schema_migrations (version) VALUES ('20120830204420');
+
+INSERT INTO schema_migrations (version) VALUES ('20120903175855');
+
+INSERT INTO schema_migrations (version) VALUES ('20120903185031');
+
+INSERT INTO schema_migrations (version) VALUES ('20120905184600');
+
+INSERT INTO schema_migrations (version) VALUES ('20120921162430');
+
+INSERT INTO schema_migrations (version) VALUES ('20120921162555');
+
+INSERT INTO schema_migrations (version) VALUES ('20120921174308');
+
+INSERT INTO schema_migrations (version) VALUES ('20120921202355');
+
+INSERT INTO schema_migrations (version) VALUES ('20120924185751');
+
 INSERT INTO schema_migrations (version) VALUES ('20120925112402');
 
 INSERT INTO schema_migrations (version) VALUES ('20120926223511');
@@ -1611,3 +1668,9 @@ INSERT INTO schema_migrations (version) VALUES ('20120929133832');
 INSERT INTO schema_migrations (version) VALUES ('20120929145351');
 
 INSERT INTO schema_migrations (version) VALUES ('20121001010621');
+
+INSERT INTO schema_migrations (version) VALUES ('20121010191842');
+
+INSERT INTO schema_migrations (version) VALUES ('20121025195705');
+
+INSERT INTO schema_migrations (version) VALUES ('20121030141648');

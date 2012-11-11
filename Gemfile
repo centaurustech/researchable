@@ -116,6 +116,7 @@ group :test, :development do
   gem 'shoulda', require: false
   gem 'factory_girl_rails', '1.7.0'
   gem 'capybara', ">= 1.0.1"
+  gem 'shoulda-matchers'
 end
 
 group :development do

@@ -20,6 +20,7 @@ class Project < ActiveRecord::Base
   has_many :updates, :dependent => :destroy
   has_many :notifications, :dependent => :destroy
   has_one :project_total
+  has_one :academic_email
   has_and_belongs_to_many :managers, :join_table => "projects_managers", :class_name => 'User'
   accepts_nested_attributes_for :rewards
   has_vimeo_video :video_url, :message => I18n.t('project.vimeo_regex_validation')
@@ -65,6 +66,7 @@ class Project < ActiveRecord::Base
   validates_length_of :headline, :maximum => 140
   validates_uniqueness_of :permalink, :allow_blank => true, :allow_nil => true
   validates_format_of :permalink, with: /^(\w|-)*$/, :allow_blank => true, :allow_nil => true
+  mount_uploader :video_thumbnail, LogoUploader
   before_create :store_image_url
   
   validate :media_present?
@@ -188,14 +190,22 @@ class Project < ActiveRecord::Base
   def remaining_text
     pluralize_without_number(time_to_go[:time], I18n.t('remaining_singular'), I18n.t('remaining_plural'))
   end
-
+  
+  def download_video_thumbnail
+    self.video_thumbnail = open(self.vimeo.thumbnail) if self.video_url
+  rescue OpenURI::HTTPError => e
+    ::Airbrake.notify({ :error_class => "Vimeo thumbnail download", :error_message => "Vimeo thumbnail download: #{e.inspect}", :parameters => video_url}) rescue nil
+  rescue TypeError => e
+    ::Airbrake.notify({ :error_class => "Carrierwave does not like thumbnail file", :error_message => "Carrierwave does not like thumbnail file: #{e.inspect}", :parameters => video_url}) rescue nil
+  end
+  
   def can_back?
     visible? and not expired? and not rejected?
   end
 
   def finish!
-      return unless expired? and can_finish and not finished
-      notify_observers(:notify_users)
+    return unless expired? and can_finish and not finished
+    notify_observers(:notify_users)
   end
 
   def as_json(options={})

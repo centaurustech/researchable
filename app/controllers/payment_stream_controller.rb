@@ -1,6 +1,6 @@
 class PaymentStreamController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [:moip]
-  
+
   def thank_you
     unless session[:thank_you_id]
       flash[:failure] = I18n.t('payment_stream.thank_you.error')

@@ -48,7 +48,7 @@ var CATARSE = {
 
     backers:{
       index: function(){
-      	window.view = new CATARSE.Adm.Backers.Index({el: $("body") });
+        window.view = new CATARSE.Adm.Backers.Index({el: $("body") });
       }
     }
   },
