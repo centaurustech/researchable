@@ -40,6 +40,7 @@ class User < ActiveRecord::Base
     :twitter,
     :facebook_link,
     :other_link
+    :admin
 
   include ActionView::Helpers::NumberHelper
   include ActionView::Helpers::TextHelper
